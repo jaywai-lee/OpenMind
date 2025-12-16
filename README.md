@@ -76,7 +76,7 @@
       ⭐ 깃 초기 세팅<br>
       ⭐ PR권한<br>
       ⭐ 디스코드 연결<br>
-      ⭐ 질문 목록 페이지<br>
+      ⭐ 개별 피드 페이지<br>
     </td>
   </tr>
 
@@ -176,7 +176,7 @@
 |   🐛   |   Fix    |      버그 수정       |          Fix a bug          |
 |   📝   |   Docs   | 문서 추가 / 업데이트 | Add or update documentation |
 |   ♻️   | Refactor |       리펙토링       |        Refactor code        |
-|  🚑️   |  Hotfix  |       긴급수정       |       Critical hotfix       |
+|   🚑️   |  Hotfix  |       긴급수정       |       Critical hotfix       |
 
 ```
 // 커밋 메세지 예시
@@ -197,7 +197,7 @@
 - `main`&ensp;브랜치 1개 유지
 - 기능 단위 `feature`&ensp;브랜치 생성 후 PR 병합
 - `반드시 conflict가 나면 팀원들과 공유 후 해결`(간단한 건 혼자 해결)
-- `PR merge`: merge and squash 방식, `3인 이상` approve되어야 `merge` 가능
+- `PR merge`: merge and squash 방식, `1인 이상` approve되어야 `merge` 가능
 
 ```txt
 > 새로운 작업 시작할 때
@@ -308,7 +308,6 @@ export default defineConfig([
   },
   prettierConfig,
 ]);
-
 ```
 
 <br>

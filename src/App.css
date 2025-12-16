@@ -1,0 +1,11 @@
+#root {
+  max-width: 1520px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}

@@ -1,4 +1,4 @@
 function MainLayout() {
-  return <>111test123테스트중입니다</>;
+  return <>111test123테스트성공</>;
 }
 export default MainLayout;

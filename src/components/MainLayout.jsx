@@ -1,4 +1,4 @@
-function MainLayout({ children }) {
-  return <>{children}</>;
+function MainLayout() {
+  return <>111</>;
 }
 export default MainLayout;

@@ -1,11 +1,11 @@
 import FeedHeader from '../components/FeedHeader';
-import FeedCard from '../components/FeedCard';
+import SubjectsFeedCard from '../components/SubjectsFeedCard';
 
 function FeedDetailPage() {
   return (
     <>
       <FeedHeader />
-      <FeedCard />
+      <SubjectsFeedCard />
     </>
   );
 }

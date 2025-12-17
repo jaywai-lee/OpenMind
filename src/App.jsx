@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import MainPage from './pages/MainPage';
+import AnswerPage from './pages/AnswerPage';
 import _ComponentPage from './components/common/_ComponentsPage';
-import FeedDatailPage from './pages/FeedDetailPage';
+import FeedDetailPage from './pages/FeedDetailPage';
 
 function App() {
   const isDevelopment = import.meta.env.MODE === 'development';
@@ -12,7 +13,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/post" element={<FeedDatailPage />} />
+          <Route path="/post" element={<FeedDetailPage />} />
+          <Route path="/answer" element={<AnswerPage />} />
 
           {/* component test */}
           {isDevelopment && (

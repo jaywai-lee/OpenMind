@@ -3,13 +3,17 @@
   border-radius: 8px;
   border-width: 1px;
   padding: 4px 12px;
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
   background: var(--Grayscale-10);
 }
 
 .done {
   border: 1px solid var(--Brown-40);
+  color: var(--Brown-40);
 }
 
 .waiting {
   border: 1px solid var(--Grayscale-40);
+  color: var(--Grayscale-40);
 }

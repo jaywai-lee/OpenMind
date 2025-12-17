@@ -14,6 +14,12 @@ function _ComponentPage() {
         <Button type="white" isDisabled={true}>
           aaaaa
         </Button>
+        <Button type="dark" size="small" isDisabled={true}>
+          aaaaa
+        </Button>
+        <Button type="white" size="small" isDisabled={true}>
+          aaaaa
+        </Button>
       </div>
     </div>
   );

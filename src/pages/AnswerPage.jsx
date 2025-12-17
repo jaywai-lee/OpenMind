@@ -3,6 +3,7 @@ import FeedCard from "../components/FeedCard";
 function AnswerPage() {
   return(
     <>
+      <FeedHeader />
       <FeedCard />
     </>
   );

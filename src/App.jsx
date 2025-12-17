@@ -4,7 +4,7 @@ import './App.css';
 import MainPage from './pages/MainPage';
 import AnswerPage from './pages/AnswerPage';
 import _ComponentPage from './components/common/_ComponentsPage';
-import FeedDetailPage from './pages/FeedDetailPage';
+import SubjectsFeedPage from './pages/SubjectsFeedPage';
 
 function App() {
   const isDevelopment = import.meta.env.MODE === 'development';
@@ -13,7 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/post" element={<FeedDetailPage />} />
+          <Route path="/post" element={<SubjectsFeedPage />} />
           <Route path="/answer" element={<AnswerPage />} />
 
           {/* component test */}

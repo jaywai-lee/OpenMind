@@ -1,0 +1,25 @@
+.messageSection {
+  width: 716px;
+  height: 800px;
+  margin: 54px auto 0;
+  border-radius: 16px;
+  border: 1px solid var(--Brown-30);
+  background: var(--Brown-10);
+}
+.messageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0 16px 0;
+  gap: 8px;
+}
+.messageImage {
+  height: 24px;
+  width: 24px;
+}
+.messageText {
+  font-family: 'Actor';
+  color: var(--Brown-40);
+  font-weight: 400;
+  font-size: 20px;
+}

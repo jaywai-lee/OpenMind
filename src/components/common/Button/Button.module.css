@@ -36,6 +36,7 @@
   background: var(--Brown-10);
   border: 1px solid var(--Brown-40);
   transition: border-color 0.2s ease-in-out;
+  background-image: url('../../../assets/icons/arrow-right-line.svg');
 }
 .Button.white:hover {
   border: 2px solid var(--Brown-40);

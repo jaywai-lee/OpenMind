@@ -1,7 +1,13 @@
 import FeedHeader from '../components/FeedHeader';
+import FeedCard from '../components/FeedCard';
 
-function FeedDatailPage() {
-  return <FeedHeader />;
+function FeedDetailPage() {
+  return (
+    <>
+      <FeedHeader />
+      <FeedCard />
+    </>
+  );
 }
 
-export default FeedDatailPage;
+export default FeedDetailPage;

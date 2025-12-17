@@ -1,0 +1,32 @@
+/* 시멘틱태그 레이아웃 */
+/* 헤더 */
+header {
+}
+
+/* 네비게이션 */
+nav {
+}
+aside {
+}
+
+/* 메인 */
+main {
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+}
+article {
+}
+
+figure {
+}
+
+p {
+}
+
+section {
+}
+
+/* 푸터 */
+footer {
+}

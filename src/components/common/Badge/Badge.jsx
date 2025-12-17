@@ -1,7 +1,11 @@
 import styles from './Badge.module.css';
-
+/**
+ * 뱃지 컴포넌트 (값 타입 설명)
+ * status: "done" / "waiting" (string) 답변완료 / 미답변
+ * @props { status }
+ * @returns <span> 뱃지 - 답변완료 : 미답변
+ */
 const Badge = ({ status }) => {
-  // status 값에 따라 클래스를 결정 (done 또는 waiting)
   const isCompleted = status === 'done';
 
   return (

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import MainPage from './components/MainPage';
-import ComponentPage from './components/common/componentsPage';
+import MainPage from './pages/MainPage';
+import _ComponentPage from './components/common/_ComponentsPage';
 
 function App() {
   const isDevelopment = import.meta.env.MODE === 'development';
@@ -14,7 +14,7 @@ function App() {
 
           {/* component test */}
           {isDevelopment && (
-            <Route path="component" element={<ComponentPage />} />
+            <Route path="component" element={<_ComponentPage />} />
           )}
         </Routes>
       </BrowserRouter>

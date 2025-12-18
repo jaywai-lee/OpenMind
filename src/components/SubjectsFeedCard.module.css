@@ -1,6 +1,5 @@
 .messageSection {
   width: 716px;
-  height: 800px;
   margin: 54px auto 0;
   border-radius: 16px;
   border: 1px solid var(--Brown-30);
@@ -16,6 +15,8 @@
 .messageImage {
   height: 24px;
   width: 24px;
+  filter: brightness(0) saturate(100%) invert(18%) sepia(8%) saturate(3659%)
+    hue-rotate(337deg) brightness(100%) contrast(93%);
 }
 .messageText {
   font-family: 'Actor';

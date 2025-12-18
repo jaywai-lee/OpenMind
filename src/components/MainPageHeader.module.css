@@ -1,0 +1,12 @@
+.questionGoBtnContainer {
+  width: 100%;
+  height: 160px;
+  display: flex;
+  justify-content: right;
+  background: var(--Grayscale-20);
+}
+.questionGoBtnGroup {
+  width: 161px;
+  height: 46px;
+  margin: 45px 130px;
+}

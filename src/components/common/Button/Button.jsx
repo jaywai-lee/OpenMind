@@ -7,18 +7,16 @@ import styles from './Button.module.css';
  * @props { children, type, onClick, isDisabled }
  * @returns <button> 버튼
  */
-function Button({ children, type, size, onClick, isDisabled, ...props }) {
+function Button({ children, theme, size, onClick, isDisabled, ...props }) {
   return (
-    <>
-      <button
-        className={`${styles.Button} ${styles[type]} ${styles[size]}`}
-        onClick={onClick}
-        disabled={isDisabled}
-        {...props}
-      >
-        {children}
-      </button>
-    </>
+    <button
+      className={`${styles.Button} ${styles[theme]} ${styles[size]}`}
+      onClick={onClick}
+      disabled={isDisabled}
+      {...props}
+    >
+      {children}
+    </button>
   );
 }
 

@@ -1,14 +1,14 @@
 import styles from './FeedHeader.module.css';
 import logo from '../assets/icons/logo.svg';
-import headerImg from '../assets/images/header-image.png';
+import headerImage from '../assets/images/header-image.png';
 import UserProfile from './UserProfile';
 
 function FeedHeader() {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.group}>
       <header
         className={styles.header}
-        style={{ backgroundImage: `url(${headerImg})` }}
+        style={{ backgroundImage: `url(${headerImage})` }}
       >
         <img className={styles.logo} src={logo} alt="logo" />
       </header>

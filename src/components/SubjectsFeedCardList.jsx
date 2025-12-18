@@ -2,15 +2,14 @@ import styles from './SubjectsFeedCardList.module.css';
 import thumbsDown from '../assets/icons/thumbs-down.svg';
 import thumbsUp from '../assets/icons/thumbs-up.svg';
 import profileImage from '../assets/images/userimage-sample.png';
+import Badge from '../../src/components/common/Badge/Badge';
 
 function SubjectsFeedCardList({ question }) {
   const { content, createdAt, like, dislike, answer } = question;
   return (
     <section className={styles.feedCardListContainer}>
       <div className={styles.answerActions}>
-        <div className={styles.answerStatus}>
-          {answer ? '답변완료' : '미답변'}
-        </div>
+        <Badge status={answer ? 'done' : 'waiting'} />
       </div>
 
       <div className={styles.question}>

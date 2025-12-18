@@ -3,6 +3,7 @@ import thumbsDown from '../assets/icons/thumbs-down.svg';
 import thumbsUp from '../assets/icons/thumbs-up.svg';
 import profileImage from '../assets/images/userimage-sample.png';
 import Badge from '../../src/components/common/Badge/Badge';
+import { formatRelativeDate } from '../utils/formatRelativeDate';
 
 function SubjectsFeedCardList({ question }) {
   const { content, createdAt, like, dislike, answer } = question;
@@ -14,7 +15,7 @@ function SubjectsFeedCardList({ question }) {
 
       <div className={styles.question}>
         <span className={styles.questionMeta}>
-          질문 · {new Date(createdAt).toLocaleDateString()}
+          질문 · {formatRelativeDate(createdAt)}
         </span>
         <span className={styles.questionText}>{content}</span>
       </div>
@@ -26,7 +27,7 @@ function SubjectsFeedCardList({ question }) {
             <div className={styles.answerMeta}>
               <span className={styles.userName}>{answer.author?.name}</span>
               <span className={styles.answerDate}>
-                {new Date(answer.createdAt).toLocaleDateString()}
+                {formatRelativeDate(answer.createdAt)}
               </span>
             </div>
             <p className={styles.answerContent}>{answer.content}</p>

@@ -16,6 +16,8 @@
 .messageImage{
   height: 24px;
   width: 24px;
+  filter: brightness(0) saturate(100%) invert(18%) sepia(8%) saturate(3659%)
+    hue-rotate(337deg) brightness(100%) contrast(93%);
 }
 .messageText {
   font-family: 'Actor';

@@ -1,0 +1,36 @@
+.dropdownContainer {
+  width: 103px;
+  height: 68px;
+  background: var(--Grayscale-10);
+  border: 1px solid var(--Grayscale-30);
+  box-shadow: var(--box-shadow-1pt);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 25px;
+  right: 0;
+}
+.dropdownGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  height: 30px;
+  width: 103px;
+  color: var(--Grayscale-50);
+  cursor: pointer;
+}
+.dropdownImage {
+  width: 14px;
+  height: 14px;
+}
+.dropdownText {
+  font-size: 14px;
+  font-weight: 500;
+}
+.dropdownGroup:hover {
+  filter: brightness(0) saturate(100%) invert(32%) 
+  sepia(90%) saturate(3792%) hue-rotate(209deg) brightness(105%) contrast(90%);
+}

@@ -1,0 +1,16 @@
+.floatingButton {
+  position: fixed;
+  width: 208px;
+  height: 54px;
+  right: 24px;
+  bottom: 24px;
+  padding: 12px 24px;
+  border-radius: 200px;
+  background-color: var(--Brown-40);
+  color: var(--Grayscale-10);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import FeedHeader from '../components/FeedHeader';
 import SubjectsFeedCard from '../components/SubjectsFeedCard';
+import FloatingButton from '../components/FloatingButton';
 
 const DUMMY_QUESTIONS = [
   {
@@ -43,6 +44,7 @@ function FeedDetailPage() {
     <>
       <FeedHeader />
       <SubjectsFeedCard count={count} questions={questions} />
+      <FloatingButton onClick={() => console.log('button clicked')} />
     </>
   );
 }

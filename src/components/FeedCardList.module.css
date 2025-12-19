@@ -91,13 +91,17 @@
 .submitButton {
   cursor: pointer;
   background: var(--Brown-30);
+  color: var(--Grayscale-10);
   width: 560px;
   height: 46px;
   border-radius: 8px;
   margin-top: 8px;
-  color: var(--Grayscale-10, #FFFFFF);
   font-size: 16px;
   font-weight: 400;
+}
+.disabled {
+  background: var(--Brown-40);
+  color: var(--Grayscale-10);
 }
 .reactions {
   height: 43px;
@@ -121,4 +125,10 @@
   align-items: center;
   gap: 7px;
   color: var(--Grayscale-40);
+}
+.answerText {
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
 }

@@ -1,8 +1,22 @@
 import styles from './SubjectsFeedCard.module.css';
 import SubjectsFeedCardList from './SubjectsFeedCardList';
 import messages from '../assets/icons/messages.svg';
+import blankImage from '../assets/images/blank-image.png';
 
 function SubjectsFeedCard({ subject, count, questions }) {
+  if (questions.length === 0) {
+    return (
+      <section className={styles.emptySection}>
+        <div className={styles.emptyContainer}>
+          <div className={styles.messageGroup}>
+            <img className={styles.messageImage} src={messages} alt="" />
+            <span className={styles.messageText}>아직 질문이 없습니다</span>
+          </div>
+          <img className={styles.blankImage} src={blankImage} />
+        </div>
+      </section>
+    );
+  }
   return (
     <section className={styles.messageSection}>
       <div className={styles.messageContainer}>

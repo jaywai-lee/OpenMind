@@ -1,52 +1,55 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { get } from '../api/axios';
 import FeedHeader from '../components/FeedHeader';
 import SubjectsFeedCard from '../components/SubjectsFeedCard';
 import FloatingButton from '../components/FloatingButton';
 
-const DUMMY_QUESTIONS = [
-  {
-    id: 1,
-    content: '좋아하는 영화는?',
-    createdAt: '2025-12-16T00:00:00Z',
-    like: 3,
-    dislike: 1,
-    answer: null,
-  },
-  {
-    id: 2,
-    content: '좋아하는 음식은?',
-    createdAt: '2025-12-17T00:00:00Z',
-    like: 5,
-    dislike: 0,
-    answer: {
-      id: 10,
-      content: '회를 좋아합니다.',
-      createdAt: '2025-12-18T00:00:00Z',
-      author: {
-        name: '아초는고양이',
-      },
-    },
-  },
-];
-
-function FeedDetailPage() {
+function SubjectsFeedPage() {
   const { id: subjectId } = useParams();
   const [questions, setQuestions] = useState([]);
   const [count, setCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [subject, setSubject] = useState(null);
 
   useEffect(() => {
-    setQuestions(DUMMY_QUESTIONS);
-    setCount(DUMMY_QUESTIONS.length);
-  }, subjectId);
+    if (!subjectId) return;
+
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const [subject, questionsData] = await Promise.all([
+          get(`/21-1/subjects/${subjectId}/`),
+          get(`/21-1/subjects/${subjectId}/questions/`),
+        ]);
+        setSubject(subject);
+        setQuestions(questionsData.results);
+        setCount(questionsData.count);
+      } catch (err) {
+        setError('데이터를 불러오지 못했습니다.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, [subjectId]);
 
   return (
     <>
-      <FeedHeader />
-      <SubjectsFeedCard count={count} questions={questions} />
+      <FeedHeader subject={subject} />
+      {isLoading && <p>로딩 중...</p>}
+      {error && <p>{error}</p>}
+      {!isLoading && !error && (
+        <SubjectsFeedCard
+          subject={subject}
+          count={count}
+          questions={questions}
+        />
+      )}
       <FloatingButton onClick={() => console.log('button clicked')} />
     </>
   );
 }
 
-export default FeedDetailPage;
+export default SubjectsFeedPage;

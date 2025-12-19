@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import MainPage from './pages/MainPage';
@@ -14,7 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/post" element={<SubjectsFeedPage />} />
+          <Route path="/post/:id" element={<SubjectsFeedPage />} />
           <Route path="/answer" element={<AnswerPage />} />
 
           {/* component test */}

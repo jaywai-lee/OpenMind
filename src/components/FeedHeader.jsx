@@ -3,7 +3,8 @@ import logo from '../assets/icons/logo.svg';
 import headerImage from '../assets/images/header-image.png';
 import UserProfile from './UserProfile';
 
-function FeedHeader() {
+function FeedHeader({ subject }) {
+  if (!subject) return null;
   return (
     <div className={styles.group}>
       <header
@@ -12,7 +13,7 @@ function FeedHeader() {
       >
         <img className={styles.logo} src={logo} alt="logo" />
       </header>
-      <UserProfile />
+      <UserProfile subject={subject} />
     </div>
   );
 }

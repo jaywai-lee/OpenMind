@@ -1,0 +1,9 @@
+.title {
+  width: 100%;
+  height: 48px;
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-3xl);
+  color: var(--Grayscale-60);
+  line-height: var(--spacing-xl);
+  margin-top: 40px;
+}

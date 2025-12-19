@@ -5,7 +5,7 @@ import profileImage from '../assets/images/userimage-sample.png';
 import Badge from '../../src/components/common/Badge/Badge';
 import { formatRelativeDate } from '../utils/formatRelativeDate';
 
-function SubjectsFeedCardList({ question }) {
+function SubjectsFeedCardList({ subject, question }) {
   const { content, createdAt, like, dislike, answer } = question;
   return (
     <section className={styles.feedCardListContainer}>
@@ -22,10 +22,14 @@ function SubjectsFeedCardList({ question }) {
 
       {answer && (
         <div className={styles.answerFormBody}>
-          <img className={styles.profileImage} src={profileImage} alt="" />
+          <img
+            className={styles.profileImage}
+            src={subject.imageSource}
+            alt={subject.id}
+          />
           <div className={styles.answerTextGroup}>
             <div className={styles.answerMeta}>
-              <span className={styles.userName}>{answer.author?.name}</span>
+              <span className={styles.userName}>{subject.name}</span>
               <span className={styles.answerDate}>
                 {formatRelativeDate(answer.createdAt)}
               </span>

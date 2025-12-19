@@ -4,17 +4,15 @@ import linkShare from '../assets/icons/link-share.svg';
 import kakaoShare from '../assets/icons/kakao-share.svg';
 import facebookShare from '../assets/icons/facebook-share.svg';
 
-function UserProfile() {
-  const userNickname = '아초는고양이';
-
+function UserProfile({ subject }) {
   return (
     <section className={styles.profile}>
       <img
         className={styles.avatar}
-        src={userImage}
-        alt={`${userNickname} profile image`}
+        src={subject.imageSource}
+        alt={subject.name}
       />
-      <p className={styles.nickname}>{userNickname}</p>
+      <p className={styles.nickname}>{subject.name}</p>
       <div className={styles.share}>
         <button type="button" aria-label="링크 공유">
           <img src={linkShare} alt="url share" />

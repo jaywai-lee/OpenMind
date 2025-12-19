@@ -1,3 +1,5 @@
+![Image](https://github.com/user-attachments/assets/93cb36da-d55b-419e-a389-be57b6e41f66)
+
 > ## ✏️ FE 21기 기초 프로젝트 : OpenMind
 
 - 일정 : 2025. 12. 16 ~ 2026. 1. 3

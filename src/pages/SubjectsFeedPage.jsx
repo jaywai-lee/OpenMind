@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { get } from '../api/axios';
+import { get, post } from '../api/axios';
 import FeedHeader from '../components/FeedHeader';
 import SubjectsFeedCard from '../components/SubjectsFeedCard';
 import FloatingButton from '../components/FloatingButton';
@@ -15,7 +15,6 @@ function SubjectsFeedPage() {
 
   useEffect(() => {
     if (!subjectId) return;
-
     const fetchData = async () => {
       try {
         setIsLoading(true);
@@ -35,6 +34,20 @@ function SubjectsFeedPage() {
     fetchData();
   }, [subjectId]);
 
+  const handleReaction = async (questionId, type) => {
+    try {
+      const updatedQuestion = await post(
+        `/21-1/questions/${questionId}/reaction/`,
+        { type },
+      );
+      setQuestions((prev) =>
+        prev.map((q) => (q.id === updatedQuestion.id ? updatedQuestion : q)),
+      );
+    } catch (err) {
+      console.error('리액션 처리 실패', err);
+    }
+  };
+
   return (
     <>
       <FeedHeader subject={subject} />
@@ -45,6 +58,7 @@ function SubjectsFeedPage() {
           subject={subject}
           count={count}
           questions={questions}
+          onReact={handleReaction}
         />
       )}
       <FloatingButton onClick={() => console.log('button clicked')} />

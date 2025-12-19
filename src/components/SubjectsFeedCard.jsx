@@ -3,7 +3,7 @@ import SubjectsFeedCardList from './SubjectsFeedCardList';
 import messages from '../assets/icons/messages.svg';
 import blankImage from '../assets/images/blank-image.png';
 
-function SubjectsFeedCard({ subject, count, questions }) {
+function SubjectsFeedCard({ subject, count, questions, onReact }) {
   if (questions.length === 0) {
     return (
       <section className={styles.emptySection}>
@@ -12,7 +12,7 @@ function SubjectsFeedCard({ subject, count, questions }) {
             <img className={styles.messageImage} src={messages} alt="" />
             <span className={styles.messageText}>아직 질문이 없습니다</span>
           </div>
-          <img className={styles.blankImage} src={blankImage} />
+          <img className={styles.blankImage} src={blankImage} alt="empty" />
         </div>
       </section>
     );
@@ -28,6 +28,7 @@ function SubjectsFeedCard({ subject, count, questions }) {
           key={question.id}
           question={question}
           subject={subject}
+          onReact={onReact}
         />
       ))}
     </section>

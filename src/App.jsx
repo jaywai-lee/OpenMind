@@ -5,11 +5,12 @@ import MainPage from './pages/MainPage';
 import AnswerPage from './pages/AnswerPage';
 import _ComponentPage from './components/common/_ComponentsPage';
 import SubjectsFeedPage from './pages/SubjectsFeedPage';
+import { DeviceProvider } from './contexts/DeviceContext';
 
 function App() {
   const isDevelopment = import.meta.env.MODE === 'development';
   return (
-    <>
+    <DeviceProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainPage />} />
@@ -22,7 +23,7 @@ function App() {
           )}
         </Routes>
       </BrowserRouter>
-    </>
+    </DeviceProvider>
   );
 }
 

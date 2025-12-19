@@ -1,0 +1,25 @@
+.group {
+  width: 100%;
+  height: 57px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.group a {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 146px;
+  height: 57px;
+}
+
+.button {
+  width: 161px;
+  height: 46px;
+  background: var(--Brown-10);
+  border-radius: 8px;
+  border: 1px solid var(--Brown-40);
+}

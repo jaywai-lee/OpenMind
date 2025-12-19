@@ -1,3 +1,4 @@
+import { ArrowRightLine, ArrowRightLineDisabled } from '../Icons/Icons';
 import styles from './Button.module.css';
 /**
  * 버튼 컴포넌트 (값 타입 설명)
@@ -8,6 +9,7 @@ import styles from './Button.module.css';
  * @returns <button> 버튼
  */
 function Button({ children, theme, size, onClick, isDisabled, ...props }) {
+  const showArrow = theme === 'white';
   return (
     <button
       className={`${styles.Button} ${styles[theme]} ${styles[size]}`}
@@ -16,6 +18,15 @@ function Button({ children, theme, size, onClick, isDisabled, ...props }) {
       {...props}
     >
       {children}
+      {showArrow && (
+        <span className={styles.iconGroup}>
+          {isDisabled ? (
+            <ArrowRightLineDisabled color="#c7bbb5" />
+          ) : (
+            <ArrowRightLine color="#542f1a" size={18} />
+          )}
+        </span>
+      )}
     </button>
   );
 }

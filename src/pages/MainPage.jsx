@@ -1,4 +1,12 @@
+import MainPageContent from '../components/MainPageContent';
+import MainPageHeader from '../components/MainPageHeader';
+
 function MainPage() {
-  return <div>222</div>;
+  return (
+    <>
+      <MainPageHeader />
+      <MainPageContent />
+    </>
+  );
 }
 export default MainPage;

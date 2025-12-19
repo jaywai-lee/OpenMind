@@ -13,7 +13,7 @@ const api = Axios.create({
  * try catch 는 해당 페이지에서 처리 한다.
   try {
     const responseData = await get('/products', {
-      params: {
+      {
         ...
       },
     });

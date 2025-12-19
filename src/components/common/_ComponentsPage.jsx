@@ -8,16 +8,16 @@ function _ComponentPage() {
       <Badge status="done" /> {/* 답변완료 뱃지 표시 */}
       <Badge status="waiting" /> {/* 미답변 뱃지 표시 */}
       <div>
-        <Button type="dark" isDisabled={true}>
+        <Button theme="dark" isDisabled={true}>
           aaaaa
         </Button>
-        <Button type="white" isDisabled={true}>
+        <Button theme="white" isDisabled={true}>
           aaaaa
         </Button>
-        <Button type="dark" size="small" isDisabled={true}>
+        <Button theme="dark" size="small" isDisabled={true}>
           aaaaa
         </Button>
-        <Button type="white" size="small" isDisabled={true}>
+        <Button theme="white" size="small" isDisabled={true}>
           aaaaa
         </Button>
       </div>

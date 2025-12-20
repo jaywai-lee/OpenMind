@@ -1,0 +1,52 @@
+.answerForm {
+  display: flex;
+  gap: 12px;
+  margin: 0;
+}
+.profileImage {
+  width: 48px;
+  height: 48px;
+}
+.answerFormBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.infoGroup {
+  display: flex;
+  justify-content: center;
+}
+.userName {
+  font-family: 'Actor';
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--Grayscale-60);
+  margin-right: 8px;
+}
+.date {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--Grayscale-40);
+  display: flex;
+  align-items: center;
+}
+.answerInput {
+  box-sizing: border-box;
+  width: 560px;
+  height: 186px;
+  background: var(--Grayscale-20);
+  border-radius: 8px;
+  padding: 16px;
+  color: var(--Grayscale-40);
+  font-size: 16px;
+  font-weight: 400;
+  resize: none;
+}
+.answerText {
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+}
+

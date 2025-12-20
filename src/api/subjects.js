@@ -5,3 +5,6 @@ export const createSubject = (name) =>
     name: name.trim(),
     team: '21-1',
   });
+
+export const getSubject = (subjectId) =>
+  instance.get(`/subjects/${subjectId}/`).then((res) => res.data);

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { get, post } from '../api/axios';
+import { getSubject } from '../api/subjects';
+import { getQuestionsBySubject, postQuestionReaction } from '../api/questions';
 import FeedHeader from '../components/FeedHeader';
 import SubjectsFeedCard from '../components/SubjectsFeedCard';
 import FloatingButton from '../components/FloatingButton';
@@ -18,11 +19,11 @@ function SubjectsFeedPage() {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const [subject, questionsData] = await Promise.all([
-          get(`/21-1/subjects/${subjectId}/`),
-          get(`/21-1/subjects/${subjectId}/questions/`),
+        const [subjectData, questionsData] = await Promise.all([
+          getSubject(subjectId),
+          getQuestionsBySubject(subjectId),
         ]);
-        setSubject(subject);
+        setSubject(subjectData);
         setQuestions(questionsData.results);
         setCount(questionsData.count);
       } catch (err) {
@@ -36,10 +37,7 @@ function SubjectsFeedPage() {
 
   const handleReaction = async (questionId, type) => {
     try {
-      const updatedQuestion = await post(
-        `/21-1/questions/${questionId}/reaction/`,
-        { type },
-      );
+      const updatedQuestion = await postQuestionReaction(questionId, type);
       setQuestions((prev) =>
         prev.map((q) => (q.id === updatedQuestion.id ? updatedQuestion : q)),
       );

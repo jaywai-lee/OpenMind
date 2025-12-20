@@ -1,9 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { getSubject } from '../api/subjects';
 import styles from './UserCard.module.css';
 import UserImage from '../assets/images/userimage-sample.png';
 import messageImg from '../assets/icons/messages.svg';
-import { get } from '../api/axios';
 import { Link } from 'react-router-dom';
 
 function UserCard() {
@@ -11,13 +11,7 @@ function UserCard() {
   useEffect(() => {
     async function loadUserList() {
       try {
-        const responseData = await get('/21-1/subjects/', {
-          params: {
-            limit: 8,
-            offset: 0,
-            team: '21-1',
-          },
-        });
+        const responseData = await getSubject();
         console.log('성공:', responseData);
         setLists(responseData.results);
       } catch (error) {
@@ -30,7 +24,7 @@ function UserCard() {
     <div className={styles.cardContainer}>
       {lists &&
         lists.map((result) => (
-          <Link to={`post/:${result.id}`} key={result.id}>
+          <Link to={`/post/${result.id}`} key={result.id}>
             <div className={styles.UserCard}>
               <div className={styles.cardProfile}>
                 <img
@@ -41,9 +35,11 @@ function UserCard() {
                 <span className={styles.name}>{result.name}</span>
               </div>
               <div className={styles.cardFooter}>
-                <img src={messageImg} alt="대화아이콘" />
-                <span className={styles.qna}>받은 질문</span>
-                <span className={styles.count}>{result.questionCount}</span>
+                <div className={styles.cardLeft}>
+                  <img src={messageImg} alt="대화아이콘" />
+                  <span className={styles.qna}>받은 질문</span>
+                </div>
+                <span className={styles.count}>{result.questionCount}개</span>
               </div>
             </div>
           </Link>

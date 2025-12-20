@@ -2,7 +2,7 @@ import { useState } from 'react';
 import logoImage from '../assets/icons/logo.svg';
 import Button from './common/Button/Button';
 import styles from './MainPageContent.module.css';
-import { post } from '../api/axios';
+import { createSubject } from '../api/subjects';
 
 function MainPageContent() {
   const [inputValue, setInputValue] = useState('');
@@ -12,10 +12,7 @@ function MainPageContent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const responseData = await post('/21-1/subjects/', {
-        name: inputValue.trim(),
-        team: '21-1',
-      });
+      const responseData = await createSubject(inputValue);
       console.log('성공:', responseData);
       setInputValue('');
     } catch (error) {

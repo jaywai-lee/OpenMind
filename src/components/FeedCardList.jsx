@@ -4,7 +4,7 @@ import more from '../assets/icons/more.svg';
 import thumbsDown from '../assets/icons/thumbs-down.svg';
 import thumbsUp from '../assets/icons/thumbs-up.svg';
 import AnswerDropdown from './AnswerDropdown';
-import FeedCardListItem from './FeedCardListItem';
+import FeedCardEdit from './FeedCardEdit';
 import { formatRelativeDate } from '../utils/formatRelativeDate';
 import Badge from '../../src/components/common/Badge/Badge';
 
@@ -37,12 +37,11 @@ function FeedCardList({ feed }) {
         <span className={styles.questionMeta}>질문 · {formatRelativeDate(createdAt)}</span>
         <span className={styles.questionText}>{content}</span>
       </div>
-      {(answer || isEditing || '') && (
-        <FeedCardListItem 
-          answer={answer}
-          createdAt={answer.createdAt} 
-          isEditing={isEditing} 
-          setIsEditing={setIsEditing} 
+      {(answer || isEditing ) && (
+        <FeedCardEdit 
+          answer={answer} 
+          onEditing={isEditing} 
+          setOnEditing={setIsEditing} 
         />
       )}
       <div className={styles.reactions}>

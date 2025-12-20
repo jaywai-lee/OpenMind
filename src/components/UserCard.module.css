@@ -38,6 +38,10 @@ span.name {
   color: #000;
   display: block;
   text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .cardFooter {

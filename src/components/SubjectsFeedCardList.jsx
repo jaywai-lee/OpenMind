@@ -1,12 +1,24 @@
 import styles from './SubjectsFeedCardList.module.css';
-import thumbsDown from '../assets/icons/thumbs-down.svg';
-import thumbsUp from '../assets/icons/thumbs-up.svg';
-import profileImage from '../assets/images/userimage-sample.png';
-import Badge from '../../src/components/common/Badge/Badge';
 import { formatRelativeDate } from '../utils/formatRelativeDate';
+import Badge from '../../src/components/common/Badge/Badge';
 
-function SubjectsFeedCardList({ subject, question }) {
-  const { content, createdAt, like, dislike, answer } = question;
+function SubjectsFeedCardList({ subject, question, onReact }) {
+  const { id, content, createdAt, like, dislike, answer } = question;
+
+  const subjectId = localStorage.getItem('subjectId');
+  const storageKey = `reactions-${subjectId}`;
+
+  const reactions = JSON.parse(localStorage.getItem(storageKey) || '{}');
+
+  const myReaction = reactions[id];
+
+  const handleReactionClick = (type) => {
+    if (myReaction) return;
+    onReact(id, type);
+    reactions[id] = type;
+    localStorage.setItem(storageKey, JSON.stringify(reactions));
+  };
+
   return (
     <section className={styles.feedCardListContainer}>
       <div className={styles.answerActions}>
@@ -25,7 +37,7 @@ function SubjectsFeedCardList({ subject, question }) {
           <img
             className={styles.profileImage}
             src={subject.imageSource}
-            alt={subject.id}
+            alt={subject.name}
           />
           <div className={styles.answerTextGroup}>
             <div className={styles.answerMeta}>
@@ -41,12 +53,20 @@ function SubjectsFeedCardList({ subject, question }) {
 
       <div className={styles.reactions}>
         <div className={styles.reactionGroup}>
-          <button className={styles.reactionButton}>
-            <img className={styles.reactionImg} src={thumbsUp} alt="" />
+          <button
+            className={`${styles.reactionButton} ${myReaction === 'like' ? styles.active : ''}`}
+            type="button"
+            onClick={() => handleReactionClick('like')}
+          >
+            <span className={`${styles.reactionIcon} ${styles.likeIcon}`} />
             <span>좋아요 {like}</span>
           </button>
-          <button className={styles.reactionButton}>
-            <img className={styles.reactionImg} src={thumbsDown} alt="" />
+          <button
+            className={`${styles.reactionButton} ${myReaction === 'dislike' ? styles.active : ''}`}
+            type="button"
+            onClick={() => handleReactionClick('dislike')}
+          >
+            <span className={`${styles.reactionIcon} ${styles.dislikeIcon}`} />
             <span>싫어요 {dislike}</span>
           </button>
         </div>

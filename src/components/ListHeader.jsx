@@ -3,8 +3,6 @@ import logo from '../assets/icons/logo.svg';
 import { Link } from 'react-router-dom';
 import Button from './common/Button/Button';
 
-
-
 function ListHeader() {
   return (
     <div className={styles.group}>

@@ -1,7 +1,6 @@
 import FeedCard from '../components/FeedCard';
 import FeedHeader from '../components/FeedHeader';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 
 const DUMMY_DATA = [
   {
@@ -49,7 +48,12 @@ const DUMMY_DATA = [
     createdAt: '2025-12-17T00:00:00Z',
     like: 7,
     dislike: 1,
-    answer: null,
+    answer: {
+      id: 12,
+      content: null,
+      createdAt: '2025-12-18T00:00:00Z',
+      name: '유지효',
+    },
   },
 ];
 

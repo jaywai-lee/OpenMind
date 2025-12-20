@@ -6,13 +6,15 @@ import { createSubject } from '../api/subjects';
 
 function MainPageContent() {
   const [inputValue, setInputValue] = useState('');
+
   const handleChange = (e) => setInputValue(e.target.value);
-  const isDisabled = inputValue.trim().length === 0;
+  const isDisabled = inputValue.length === 0;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const trimedName = inputValue.replace(/\s+/g, '');
     try {
-      const responseData = await createSubject(inputValue);
+      const responseData = await createSubject(trimedName);
       console.log('성공:', responseData);
       setInputValue('');
     } catch (error) {

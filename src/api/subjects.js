@@ -2,7 +2,7 @@ import instance from './axios';
 
 export const createSubject = (name) =>
   instance.post('/subjects/', {
-    name: name.trim(),
+    name: name,
     team: '21-1',
   });
 

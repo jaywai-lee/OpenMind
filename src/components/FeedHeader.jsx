@@ -4,7 +4,6 @@ import headerImage from '../assets/images/header-image.png';
 import UserProfile from './UserProfile';
 
 function FeedHeader({ subject }) {
-  if (!subject) return null;
   return (
     <div className={styles.group}>
       <header
@@ -13,7 +12,7 @@ function FeedHeader({ subject }) {
       >
         <img className={styles.logo} src={logo} alt="logo" />
       </header>
-      <UserProfile subject={subject} />
+      {subject && <UserProfile subject={subject} />}
     </div>
   );
 }

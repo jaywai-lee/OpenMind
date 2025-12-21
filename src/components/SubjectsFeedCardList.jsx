@@ -4,13 +4,12 @@ import Badge from '../../src/components/common/Badge/Badge';
 
 function SubjectsFeedCardList({ subject, question, onReact }) {
   const { id, content, createdAt, like, dislike, answer } = question;
-
   const subjectId = localStorage.getItem('subjectId');
   const storageKey = `reactions-${subjectId}`;
-
   const reactions = JSON.parse(localStorage.getItem(storageKey) || '{}');
-
   const myReaction = reactions[id];
+  const isAnswered = !!answer && !answer.isRejected;
+  const isRejected = !!answer && answer.isRejected;
 
   const handleReactionClick = (type) => {
     if (myReaction) return;
@@ -32,7 +31,7 @@ function SubjectsFeedCardList({ subject, question, onReact }) {
         <span className={styles.questionText}>{content}</span>
       </div>
 
-      {answer && (
+      {isAnswered && (
         <div className={styles.answerFormBody}>
           <img
             className={styles.profileImage}
@@ -47,6 +46,25 @@ function SubjectsFeedCardList({ subject, question, onReact }) {
               </span>
             </div>
             <p className={styles.answerContent}>{answer.content}</p>
+          </div>
+        </div>
+      )}
+
+      {isRejected && (
+        <div className={styles.answerFormBody}>
+          <img
+            className={styles.profileImage}
+            src={subject.imageSource}
+            alt={subject.name}
+          />
+          <div className={styles.answerTextGroup}>
+            <div className={styles.answerMeta}>
+              <span className={styles.userName}>{subject.name}</span>
+              <span className={styles.answerDate}>
+                {formatRelativeDate(answer.createdAt)}
+              </span>
+            </div>
+            <p className={styles.rejectContent}>답변 거절</p>
           </div>
         </div>
       )}

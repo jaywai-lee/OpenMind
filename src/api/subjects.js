@@ -16,3 +16,6 @@ export const getSubject = () =>
       },
     })
     .then((res) => res.data);
+
+export const getSubjects = (subjectId) =>
+  instance.get(`/subjects/${subjectId}/`).then((res) => res.data);

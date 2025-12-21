@@ -91,6 +91,10 @@
   font-size: 18px;
   color: var(--Grayscale-60);
 }
+
+.rejectContent {
+  color: var(--Red-50);
+}
 .reactions {
   height: 43px;
   width: 100%;

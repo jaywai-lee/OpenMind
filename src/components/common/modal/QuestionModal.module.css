@@ -1,0 +1,91 @@
+.modalBackDropContainer {
+  background: var(--Dim);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: 'rgba(0,0,0,0.5)';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modalContainer {
+  width: 90vw;
+  max-width: 612px;
+  height: 454px;
+  background: var(--Grayscale-10);
+  box-shadow: var(--box-shadow-2pt);
+  border-radius: 24px;
+  background: var(--Grayscale-10);
+  box-shadow: var(--box-shadow-3pt);
+  text-align: left;
+  padding: 40px 40px 70px;
+}
+h3 {
+  font-family: Actor;
+  font-weight: var(--font-weight-regular);
+  font-size: 24px;
+  line-height: 30px;
+  color: var(--Grayscale-60);
+}
+.receiveNameGroup {
+  font-family: Actor;
+  font-weight: var(--font-weight-regular);
+  font-size: 18px;
+  line-height: 24px;
+  margin: 40px 0 12px;
+  display: inline-block;
+}
+.receiveName {
+  font-family: Pretendard;
+  font-weight: var(--font-weight-regular);
+  font-size: 16px;
+  line-height: 22px;
+}
+textarea {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  padding: 16px;
+  background: var(--Grayscale-20);
+  margin-bottom: 8px;
+  resize: none;
+  box-sizing: border-box;
+}
+.loadSpinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: #ffffff;
+  -webkit-mask: url('../../../assets/icons/dot-spinner.svg') no-repeat center /
+    contain;
+  mask: url('../../../assets/icons/dot-spinner.svg') no-repeat center / contain;
+  margin-left: 10px;
+}
+
+.userProfileImage {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-block;
+  vertical-align: bottom;
+  margin: 0 4px;
+}
+
+/* tablet 일 (기준: 768px 이하) */
+@media (max-width: 768px) {
+  .modalContainer {
+    width: calc(100% - 156px);
+    /* max-width: 612px; */
+  }
+}
+
+/* mobile (기준: 375px 이하) */
+@media (max-width: 375px) {
+  .modalContainer {
+    width: calc(100% - 50px);
+    /* max-width: 327px; */
+  }
+}

@@ -1,18 +1,10 @@
 import instance from './axios';
 
 export const createSubject = (name) =>
-  instance.post('/subjects/', {
-    name: name.trim(),
-    team: '21-1',
-  });
+  instance.post('/subjects/', { name }).then((res) => res.data);
 
-export const getSubject = () =>
-  instance
-    .get(`/subjects/`, {
-      params: {
-        limit: 8,
-        offset: 0,
-        team: '21-1',
-      },
-    })
-    .then((res) => res.data);
+export const getSubject = (params) =>
+  instance.get(`/subjects/`, { params }).then((res) => res.data);
+
+export const getSubjects = (subjectId) =>
+  instance.get(`/subjects/${subjectId}/`).then((res) => res.data);

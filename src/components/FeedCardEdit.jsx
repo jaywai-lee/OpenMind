@@ -4,18 +4,22 @@ import styles from './FeedCardEdit.module.css';
 import profileImage from '../assets/images/userimage-sample.png';
 import Button from './common/Button/Button';
 
-function FeedCardEdit({ answer, onEditing, setOnEditing }) {
-  const [ text, setText ] = useState(answer.content);
+function FeedCardEdit({ answer, onEditing, setOnEditing, setOnEditDone }) {
+  const [ text, setText ] = useState(answer?.content || '');
   const [ showCreatedAt, setShowCreatedAt] = useState(false);
+
+  const isNoAnswer = answer?.content === 'null' || !answer?.content;
+  const shouldShowInput = isNoAnswer || onEditing;
 
   const handleTextChange = (e) => {
     setText(e.target.value);
   };
 
   const handleSubmit = (e) => {
-    answer.content = text; //일단 답변 텍스트 업데이트
-    setOnEditing(false);
+    if(answer) answer.content = text; //일단 답변 텍스트 업데이트, api연동 후 수정 
     setShowCreatedAt(true);
+    setOnEditing(false);
+    setOnEditDone(true);
   };
 
   const isButtonEnabled = text.trim().length === 0;
@@ -25,10 +29,10 @@ function FeedCardEdit({ answer, onEditing, setOnEditing }) {
       <img className={styles.profileImage} src={profileImage} alt="" />
       <div className={styles.answerFormBody}>
         <div className={styles.infoGroup}>
-          <span className={styles.userName}>{answer.name}</span>
+          <span className={styles.userName}>{answer?.name}</span>
           { showCreatedAt && <span className={styles.date}>{formatRelativeDate(answer.createdAt)}</span> }
         </div>
-        { onEditing ? (
+        { shouldShowInput ? (
             <>
               <textarea 
                 className={styles.answerInput}
@@ -45,7 +49,7 @@ function FeedCardEdit({ answer, onEditing, setOnEditing }) {
               </Button>
             </>
           ) : (
-            <p className={styles.answerText}>{answer.content}</p>
+            <p className={styles.answerText}>{answer?.content}</p>
           )
         }
       </div>

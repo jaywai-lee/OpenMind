@@ -12,12 +12,16 @@ function FeedCardList({ feed }) {
   const { content, createdAt, like, dislike, answer } = feed;
   const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
   const [ isEditing, setIsEditing ] = useState(false);
+  const [ isEditDone, setIsEditDone ] = useState(false);
+
+  const shouldShowEdit = answer || !answer.content || isEditing;
+  const shouldShowBadgeStatus = answer?.content || isEditDone;
 
   const handleMoreClick = () => {
     setIsDropdownOpen((prev) => !prev);
   };
 
-  const handeleEditClick = () => {
+  const handleEditClick = () => {
     setIsEditing(true);
     setIsDropdownOpen(false);
   };
@@ -25,11 +29,11 @@ function FeedCardList({ feed }) {
   return (
     <section className={styles.feedCardListContainer}>
       <div className={styles.answerActions}>
-        <Badge status={answer ? 'done' : 'waiting'} />
+        <Badge status={ shouldShowBadgeStatus ? 'done' : 'waiting'} />
         <div className={styles.dropdownGroup}>
           <img className={styles.moreImage} onClick={handleMoreClick} src={more} alt="" />
           { isDropdownOpen && 
-            <AnswerDropdown onClick={handeleEditClick}/> 
+            <AnswerDropdown onClick={handleEditClick}/> 
           }
         </div>
       </div>
@@ -37,11 +41,12 @@ function FeedCardList({ feed }) {
         <span className={styles.questionMeta}>질문 · {formatRelativeDate(createdAt)}</span>
         <span className={styles.questionText}>{content}</span>
       </div>
-      {(answer || isEditing ) && (
+      { shouldShowEdit && (
         <FeedCardEdit 
           answer={answer} 
           onEditing={isEditing} 
           setOnEditing={setIsEditing} 
+          setOnEditDone={setIsEditDone}
         />
       )}
       <div className={styles.reactions}>

@@ -16,9 +16,12 @@
   height: 57px;
 }
 
-.button {
+.linkButton {
   width: 161px;
   height: 46px;
+}
+
+.button {
   background: var(--Brown-10);
   border-radius: 8px;
   border: 1px solid var(--Brown-40);

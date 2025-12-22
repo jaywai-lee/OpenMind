@@ -1,3 +1,12 @@
 .container {
-  padding: 100px;
+  width: 716px;
+  margin: 54px auto 136px;
+}
+.floatingBig {
+  width: 208px;
+  height: 54px;
+}
+.floatingSmall {
+  width: 100px;
+  height: 35px;
 }

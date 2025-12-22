@@ -1,12 +1,23 @@
 import styles from './SubjectsFeedCardList.module.css';
-import thumbsDown from '../assets/icons/thumbs-down.svg';
-import thumbsUp from '../assets/icons/thumbs-up.svg';
-import profileImage from '../assets/images/userimage-sample.png';
-import Badge from '../../src/components/common/Badge/Badge';
 import { formatRelativeDate } from '../utils/formatRelativeDate';
+import Badge from '../../src/components/common/Badge/Badge';
 
-function SubjectsFeedCardList({ subject, question }) {
-  const { content, createdAt, like, dislike, answer } = question;
+function SubjectsFeedCardList({ subject, question, onReact }) {
+  const { id, content, createdAt, like, dislike, answer } = question;
+  const subjectId = localStorage.getItem('subjectId');
+  const storageKey = `reactions-${subjectId}`;
+  const reactions = JSON.parse(localStorage.getItem(storageKey) || '{}');
+  const myReaction = reactions[id];
+  const isAnswered = !!answer && !answer.isRejected;
+  const isRejected = !!answer && answer.isRejected;
+
+  const handleReactionClick = (type) => {
+    if (myReaction) return;
+    onReact(id, type);
+    reactions[id] = type;
+    localStorage.setItem(storageKey, JSON.stringify(reactions));
+  };
+
   return (
     <section className={styles.feedCardListContainer}>
       <div className={styles.answerActions}>
@@ -20,12 +31,12 @@ function SubjectsFeedCardList({ subject, question }) {
         <span className={styles.questionText}>{content}</span>
       </div>
 
-      {answer && (
+      {isAnswered && (
         <div className={styles.answerFormBody}>
           <img
             className={styles.profileImage}
             src={subject.imageSource}
-            alt={subject.id}
+            alt={subject.name}
           />
           <div className={styles.answerTextGroup}>
             <div className={styles.answerMeta}>
@@ -39,14 +50,41 @@ function SubjectsFeedCardList({ subject, question }) {
         </div>
       )}
 
+      {isRejected && (
+        <div className={styles.answerFormBody}>
+          <img
+            className={styles.profileImage}
+            src={subject.imageSource}
+            alt={subject.name}
+          />
+          <div className={styles.answerTextGroup}>
+            <div className={styles.answerMeta}>
+              <span className={styles.userName}>{subject.name}</span>
+              <span className={styles.answerDate}>
+                {formatRelativeDate(answer.createdAt)}
+              </span>
+            </div>
+            <p className={styles.rejectContent}>답변 거절</p>
+          </div>
+        </div>
+      )}
+
       <div className={styles.reactions}>
         <div className={styles.reactionGroup}>
-          <button className={styles.reactionButton}>
-            <img className={styles.reactionImg} src={thumbsUp} alt="" />
+          <button
+            className={`${styles.reactionButton} ${myReaction === 'like' ? styles.active : ''}`}
+            type="button"
+            onClick={() => handleReactionClick('like')}
+          >
+            <span className={`${styles.reactionIcon} ${styles.likeIcon}`} />
             <span>좋아요 {like}</span>
           </button>
-          <button className={styles.reactionButton}>
-            <img className={styles.reactionImg} src={thumbsDown} alt="" />
+          <button
+            className={`${styles.reactionButton} ${myReaction === 'dislike' ? styles.active : ''}`}
+            type="button"
+            onClick={() => handleReactionClick('dislike')}
+          >
+            <span className={`${styles.reactionIcon} ${styles.dislikeIcon}`} />
             <span>싫어요 {dislike}</span>
           </button>
         </div>

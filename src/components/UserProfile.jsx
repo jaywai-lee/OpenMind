@@ -1,5 +1,4 @@
 import styles from './UserProfile.module.css';
-import userImage from '../assets/images/userimage-sample.png';
 import linkShare from '../assets/icons/link-share.svg';
 import kakaoShare from '../assets/icons/kakao-share.svg';
 import facebookShare from '../assets/icons/facebook-share.svg';

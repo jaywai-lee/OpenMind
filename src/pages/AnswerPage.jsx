@@ -82,6 +82,7 @@ function AnswerPage() {
 
   return (
     <>
+      console.log(확인용);
       <FeedHeader subject={subject} />
       {error && <p>{error}</p>}
       {!error && (

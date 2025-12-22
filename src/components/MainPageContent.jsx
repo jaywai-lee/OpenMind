@@ -3,9 +3,12 @@ import logoImage from '../assets/icons/logo.svg';
 import Button from './common/Button/Button';
 import styles from './MainPageContent.module.css';
 import { createSubject } from '../api/subjects';
+import { Link, useNavigate } from 'react-router-dom';
+import storage from '../utils/storage';
 
 function MainPageContent() {
   const [inputValue, setInputValue] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => setInputValue(e.target.value);
   const isDisabled = inputValue.length === 0;
@@ -16,7 +19,10 @@ function MainPageContent() {
     try {
       const responseData = await createSubject(trimedName);
       console.log('성공:', responseData);
+      const { id } = responseData;
       setInputValue('');
+      storage.set('userId', id);
+      navigate(`/post/${id}/answer`);
     } catch (error) {
       console.error('에러 발생:', error);
     }
@@ -26,7 +32,9 @@ function MainPageContent() {
     <section>
       <div className={styles.mainContainer}>
         <h1>
-          <img src={logoImage} alt="로고이미지" />
+          <Link to="/">
+            <img src={logoImage} alt="로고이미지" />
+          </Link>
         </h1>
         <div className={styles.mainInputContainer}>
           <form className={styles.mainInputForm} onSubmit={handleSubmit}>

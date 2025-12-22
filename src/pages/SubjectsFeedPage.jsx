@@ -1,11 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getSubjects } from '../api/subjects';
+import { getSubject } from '../api/subjects';
 import { getQuestionsBySubject, postQuestionReaction } from '../api/questions';
 import FeedHeader from '../components/FeedHeader';
 import SubjectsFeedCard from '../components/SubjectsFeedCard';
 import FloatingButton from '../components/FloatingButton';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
+import QuestionModal from '../components/common/modal/QuestionModal';
 
 function SubjectsFeedPage() {
   const { id: subjectId } = useParams();
@@ -16,37 +17,43 @@ function SubjectsFeedPage() {
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const initFetch = async () => {
+    if (!subjectId) return;
+    try {
+      setIsLoading(true);
+      setError(null);
+      const [subjectData, questionsData] = await Promise.all([
+        getSubject(subjectId),
+        getQuestionsBySubject(subjectId, {
+          limit: 4,
+          offset: 0,
+        }),
+      ]);
+      setSubject(subjectData);
+      setQuestions(questionsData.results);
+      setCount(questionsData.count);
+      setNext(questionsData.next);
+      setHasMore(!!questionsData.next);
+    } catch (err) {
+      setError('데이터를 불러오지 못했습니다.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    if (!subjectId) return;
-    const initFetch = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-        const [subjectData, questionsData] = await Promise.all([
-          getSubjects(subjectId),
-          getQuestionsBySubject(subjectId, {
-            limit: 4,
-            offset: 0,
-          }),
-        ]);
-        setSubject(subjectData);
-        setQuestions(questionsData.results);
-        setCount(questionsData.count);
-        setNext(questionsData.next);
-        setHasMore(!!questionsData.next);
-      } catch (err) {
-        setError('데이터를 불러오지 못했습니다.');
-      } finally {
-        setIsLoading(false);
-      }
-    };
     setQuestions([]);
     setNext(null);
     setHasMore(true);
-
     initFetch();
   }, [subjectId]);
+
+  const handleRefresh = async () => {
+    await initFetch();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const fetchNextQuestions = async () => {
     if (!next || isLoading || !hasMore) return;
@@ -95,7 +102,13 @@ function SubjectsFeedPage() {
       )}
       <div ref={loadMoreRef} style={{ height: 1 }} />
       {isLoading && <p style={{ textAlign: 'center' }}>불러오는 중...</p>}
-      <FloatingButton onClick={() => console.log('button clicked')} />
+      <FloatingButton onClick={() => setIsModalOpen(true)} />
+      <QuestionModal
+        isOpen={isModalOpen}
+        subject={subject}
+        onClose={() => setIsModalOpen(false)}
+        onRefresh={handleRefresh}
+      />
     </>
   );
 }

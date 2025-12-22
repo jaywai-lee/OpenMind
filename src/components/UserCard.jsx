@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { getSubject } from '../api/subjects';
+import { getSubjectList } from '../api/subjects';
 import styles from './UserCard.module.css';
 import UserImage from '../assets/images/userimage-sample.png';
 import messageImg from '../assets/icons/messages.svg';
@@ -11,7 +11,7 @@ function UserCard() {
   useEffect(() => {
     async function loadUserList() {
       try {
-        const responseData = await getSubject();
+        const responseData = await getSubjectList();
         console.log('성공:', responseData);
         setLists(responseData.results);
       } catch (error) {

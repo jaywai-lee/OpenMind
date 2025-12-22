@@ -82,3 +82,42 @@
   gap: 7px;
   color: var(--Grayscale-40);
 }
+.reactionButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.reactionIcon {
+  width: 16px;
+  height: 16px;
+  background-color: var(--Grayscale-40);
+}
+
+.likeIcon {
+  -webkit-mask: url('../assets/icons/thumbs-up.svg') no-repeat center;
+  mask: url('../assets/icons/thumbs-up.svg') no-repeat center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.dislikeIcon {
+  -webkit-mask: url('../assets/icons/thumbs-down.svg') no-repeat center;
+  mask: url('../assets/icons/thumbs-down.svg') no-repeat center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.active .reactionIcon {
+  background-color: var(--Blue-50);
+}
+
+.active span {
+  color: var(--Blue-50);
+}

@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { formatRelativeDate } from '../utils/formatRelativeDate';
 import styles from './FeedCardEdit.module.css';
-import profileImage from '../assets/images/userimage-sample.png';
 import Button from './common/Button/Button';
 
-function FeedCardEdit({ answer, onEditing, setOnEditing, setOnEditDone }) {
+function FeedCardEdit({ subject, answer, onEditing, setOnEditing, setOnEditDone, isRejected }) {
   const [ text, setText ] = useState(answer?.content || '');
   const [ showCreatedAt, setShowCreatedAt] = useState(false);
 
@@ -25,35 +24,40 @@ function FeedCardEdit({ answer, onEditing, setOnEditing, setOnEditDone }) {
   const isButtonEnabled = text.trim().length === 0;
 
   return (
-    <div className={styles.answerForm}>
-      <img className={styles.profileImage} src={profileImage} alt="" />
-      <div className={styles.answerFormBody}>
-        <div className={styles.infoGroup}>
-          <span className={styles.userName}>{answer?.name}</span>
-          { showCreatedAt && <span className={styles.date}>{formatRelativeDate(answer.createdAt)}</span> }
+    <>
+      {isRejected && (
+        <div className={styles.answerForm}>
+          <img className={styles.profileImage} src={subject.imageSource} alt="" />
+          <div className={styles.answerFormBody}>
+            <div className={styles.infoGroup}>
+              <span className={styles.userName}>{answer?.name}</span>
+              { showCreatedAt && <span className={styles.date}>{formatRelativeDate(createdAt)}</span> }
+              <p className={styles.rejectContent}>답변 거절</p>
+            </div>
+            { shouldShowInput ? (
+                <>
+                  <textarea 
+                    className={styles.answerInput}
+                    value={text}
+                    onChange={handleTextChange} 
+                    placeholder='답변을 입력해주세요' 
+                  />
+                  <Button 
+                    theme="dark"
+                    onClick={handleSubmit}
+                    isDisabled={isButtonEnabled}
+                    >
+                    수정 완료
+                  </Button>
+                </>
+              ) : (
+                <p className={styles.answerText}>{content}</p>
+              )
+            }
+          </div>
         </div>
-        { shouldShowInput ? (
-            <>
-              <textarea 
-                className={styles.answerInput}
-                value={text}
-                onChange={handleTextChange} 
-                placeholder='답변을 입력해주세요' 
-              />
-              <Button 
-                theme="dark"
-                onClick={handleSubmit}
-                isDisabled={isButtonEnabled}
-                >
-                수정 완료
-              </Button>
-            </>
-          ) : (
-            <p className={styles.answerText}>{answer?.content}</p>
-          )
-        }
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 

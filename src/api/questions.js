@@ -9,3 +9,8 @@ export const postQuestionReaction = (questionId, type) =>
   instance
     .post(`/questions/${questionId}/reaction/`, { type })
     .then((res) => res.data);
+
+export const createQuestion = (subjectId, questionData) =>
+  instance
+    .post(`/subjects/${subjectId}/questions/`, questionData)
+    .then((res) => res.data);

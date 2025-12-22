@@ -23,6 +23,8 @@
   --box-shadow-2pt: 0px 4px 4px 0px #00000040;
   --box-shadow-3pt: 0px 16px 20px 0px #3030309e;
 
+  --Dim: #0000008f;
+
   --font-size-xs: 0.75rem; /* 12px */
   --font-size-sm: 0.875rem; /* 14px */
   --font-size-base: 1rem; /* 16px */

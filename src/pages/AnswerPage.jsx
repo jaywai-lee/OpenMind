@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getSubjects } from '../api/subjects';
+import { getSubject } from '../api/subjects';
 import { getQuestionsBySubject, postQuestionReaction } from '../api/questions';
 import FeedCard from '../components/FeedCard';
 import FeedHeader from '../components/FeedHeader';
@@ -23,7 +23,7 @@ function AnswerPage() {
         setIsLoading(true);
         setError(null);
         const [subjectData, questionsData] = await Promise.all([
-          getSubjects(subjectId),
+          getSubject(subjectId),
           getQuestionsBySubject(subjectId, {
             limit: 4,
             offset: 0,

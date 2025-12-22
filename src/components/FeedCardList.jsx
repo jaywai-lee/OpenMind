@@ -8,19 +8,15 @@ import Badge from '../../src/components/common/Badge/Badge';
 
 function FeedCardList({ subject, question, onReact }) {
   const { id, content, createdAt, like, dislike, answer } = question;
+  const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
+  const [ isEditing, setIsEditing ] = useState(false);
+  const [ isEditDone, setIsEditDone ] = useState(false);
   const subjectId = localStorage.getItem('subjectId');
   const storageKey = `reactions-${subjectId}`;
   const reactions = JSON.parse(localStorage.getItem(storageKey) || '{}');
   const myReaction = reactions[id];
-  const isAnswered = !!answer && !answer.isRejected;
-  const isRejected = !!answer && answer.isRejected;
-
-  const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
-  const [ isEditing, setIsEditing ] = useState(false);
-  const [ isEditDone, setIsEditDone ] = useState(false);
-
-  const shouldShowEdit = answer || !content || isEditing;
-  // const shouldShowBadgeStatus = answer?.content || isEditDone;
+  const shouldShowBadgeStatus = !!answer || answer?.content || isEditDone;
+  const isRejected = !!answer && answer.isRejected === true;
 
   const handleReactionClick = (type) => {
     if (myReaction) return;
@@ -41,28 +37,28 @@ function FeedCardList({ subject, question, onReact }) {
   return (
     <section className={styles.feedCardListContainer}>
       <div className={styles.answerActions}>
-        <Badge status={ answer ? 'done' : 'waiting'} />
-        <div className={styles.dropdownGroup}>
-          <img className={styles.moreImage} onClick={handleMoreClick} src={more} alt="" />
-          { isDropdownOpen && 
-            <AnswerDropdown onClick={handleEditClick}/> 
-          }
-        </div>
+        <Badge status={ shouldShowBadgeStatus ? 'done' : 'waiting'} />
+        { !isRejected && (
+          <div className={styles.dropdownGroup}>
+            <img className={styles.moreImage} onClick={handleMoreClick} src={more} alt="" />
+            { isDropdownOpen && 
+              <AnswerDropdown onClick={handleEditClick}/> 
+            }
+          </div>
+        )}
       </div>
       <div className={styles.question}>
         <span className={styles.questionMeta}>질문 · {formatRelativeDate(createdAt)}</span>
         <span className={styles.questionText}>{content}</span>
       </div>
-      { isAnswered && (
-        <FeedCardEdit
-          subject={subject}
-          isRejected={isRejected} 
-          answer={answer} 
-          onEditing={isEditing} 
-          setOnEditing={setIsEditing} 
-          setOnEditDone={setIsEditDone}
-        />
-      )}
+      <FeedCardEdit
+        answer={answer}
+        createdAt={createdAt}
+        subject={subject}
+        onEditing={isEditing} 
+        setOnEditing={setIsEditing} 
+        setOnEditDone={setIsEditDone}
+      />
       <div className={styles.reactions}>
         <div className={styles.reactionGroup}>
           <button

@@ -1,73 +1,99 @@
+import { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getSubjects } from '../api/subjects';
+import { getQuestionsBySubject, postQuestionReaction } from '../api/questions';
 import FeedCard from '../components/FeedCard';
 import FeedHeader from '../components/FeedHeader';
-import { useState, useEffect } from 'react';
-
-const DUMMY_DATA = [
-  {
-    id: 1,
-    content: '좋아하는 영화는?',
-    createdAt: '2025-12-16T00:00:00Z',
-    like: 3,
-    dislike: null,
-    answer: {
-      id: 10,
-      content: '저는 해리포터를 가장 좋아합니다.호그와트의 방학이 끝나기만을 기다리던 해리는 머글을 상대로 마법을 써서 퇴학당했다는 편지를 받는다. 이후 오러들에게 이끌려 불사조 기사단의 집결지에 도착한 해리는 법정에서 자신의 결백을 주장하고, 볼드모트가 돌아왔다는 사실을 알리지만 사람들은 이를 믿지 않는다. 이후 마법부 장관은 해리를 비롯한 호그와트 학생들을 감시하기 위해 돌로레스 엄브릿지를 교수로 파견하고, 학생들은 덤블도어의 군대를 조직해서 이에 맞선다.',
-      createdAt: '2025-12-17T00:00:00Z',
-      name: '유지효',
-    },
-  },
-  {
-    id: 2,
-    content: '제일 좋아하는 음식은?',
-    createdAt: '2025-12-10T00:00:00Z',
-    like: 5,
-    dislike: 10,
-    answer: {
-      id: 11,
-      content: '저는 회를 가장 좋아합니다.',
-      createdAt: '2025-12-12T00:00:00Z',
-      name: '유지효',
-    },
-  },
-  {
-    id: 3,
-    content: '제일 가고 싶은 여행지가 있나요? 있으면 알려주세요!!!',
-    createdAt: '2025-12-16T00:00:00Z',
-    like: 1,
-    dislike: 6,
-    answer: {
-      id: 12,
-      content: '저는 미국을 가보고 싶습니다.',
-      createdAt: '2025-12-18T00:00:00Z',
-      name: '유지효',
-    },
-  },
-  {
-    id: 4,
-    content: '당신이 제일 좋아하는 간식은?',
-    createdAt: '2025-12-17T00:00:00Z',
-    like: 7,
-    dislike: 1,
-    answer: {
-      id: 12,
-      content: null,
-      createdAt: '2025-12-18T00:00:00Z',
-      name: '유지효',
-    },
-  },
-];
+import useInfiniteScroll from '../hooks/useInfiniteScroll';
 
 function AnswerPage() {
-  const [ feeds, setFeeds ] = useState([]);
+  const { id: subjectId } = useParams();
+  const [subject, setSubject] = useState(null);
+  const [questions, setQuestions] = useState([]);
+  const [count, setCount] = useState(0);
+  const [next, setNext] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    setFeeds(DUMMY_DATA);
-  }, []);
+    if (!subjectId) return;
+    const initFetch = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const [subjectData, questionsData] = await Promise.all([
+          getSubjects(subjectId),
+          getQuestionsBySubject(subjectId, {
+            limit: 4,
+            offset: 0,
+          }),
+        ]);
+        setSubject(subjectData);
+        setQuestions(questionsData.results);
+        setCount(questionsData.count);
+        setNext(questionsData.next);
+        setHasMore(!!questionsData.next);
+      } catch (err) {
+        setError('데이터를 불러오지 못했습니다.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    setQuestions([]);
+    setNext(null);
+    setHasMore(true);
+
+    initFetch();
+  }, [subjectId]);
+
+  const fetchNextQuestions = async () => {
+    if (!next || isLoading || !hasMore) return;
+    try {
+      setIsLoading(true);
+      const data = await fetch(next).then((res) => res.json());
+      setQuestions((prev) => [...prev, ...data.results]);
+      setNext(data.next);
+      setHasMore(!!data.next);
+    } catch (err) {
+      console.error('추가 질문 로딩 실패', err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const loadMoreRef = useInfiniteScroll({
+    onIntersect: fetchNextQuestions,
+    enabled: hasMore,
+    loading: isLoading,
+    rootMargin: '100px',
+  });
+
+  const handleReaction = async (questionId, type) => {
+    try {
+      const updatedQuestion = await postQuestionReaction(questionId, type);
+      setQuestions((prev) =>
+        prev.map((q) => (q.id === updatedQuestion.id ? updatedQuestion : q)),
+      );
+    } catch (err) {
+      console.error('리액션 처리 실패', err);
+    }
+  };
 
   return (
     <>
-      <FeedHeader />
-      <FeedCard feeds={feeds} />
+      <FeedHeader subject={subject} />
+      {error && <p>{error}</p>}
+      {!error && (
+        <FeedCard
+          subject={subject}
+          count={count}
+          questions={questions}
+          onReact={handleReaction}
+        />
+      )}
+      <div ref={loadMoreRef} style={{ height: 1 }} />
+      {isLoading && <p style={{ textAlign: 'center' }}>불러오는 중...</p>}
     </>
   );
 }

@@ -1,21 +1,29 @@
 import { useState } from 'react';
 import styles from './FeedCardList.module.css';
 import more from '../assets/icons/more.svg';
-import thumbsDown from '../assets/icons/thumbs-down.svg';
-import thumbsUp from '../assets/icons/thumbs-up.svg';
 import AnswerDropdown from './AnswerDropdown';
 import FeedCardEdit from './FeedCardEdit';
 import { formatRelativeDate } from '../utils/formatRelativeDate';
 import Badge from '../../src/components/common/Badge/Badge';
 
-function FeedCardList({ feed }) {
-  const { content, createdAt, like, dislike, answer } = feed;
+function FeedCardList({ subject, question, onReact }) {
+  const { id, content, createdAt, like, dislike, answer } = question;
   const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
   const [ isEditing, setIsEditing ] = useState(false);
   const [ isEditDone, setIsEditDone ] = useState(false);
+  const subjectId = localStorage.getItem('subjectId');
+  const storageKey = `reactions-${subjectId}`;
+  const reactions = JSON.parse(localStorage.getItem(storageKey) || '{}');
+  const myReaction = reactions[id];
+  const shouldShowBadgeStatus = !!answer || answer?.content || isEditDone;
+  const isRejected = !!answer && answer.isRejected === true;
 
-  const shouldShowEdit = answer || !answer.content || isEditing;
-  const shouldShowBadgeStatus = answer?.content || isEditDone;
+  const handleReactionClick = (type) => {
+    if (myReaction) return;
+    onReact(id, type);
+    reactions[id] = type;
+    localStorage.setItem(storageKey, JSON.stringify(reactions));
+  };
 
   const handleMoreClick = () => {
     setIsDropdownOpen((prev) => !prev);
@@ -30,37 +38,47 @@ function FeedCardList({ feed }) {
     <section className={styles.feedCardListContainer}>
       <div className={styles.answerActions}>
         <Badge status={ shouldShowBadgeStatus ? 'done' : 'waiting'} />
-        <div className={styles.dropdownGroup}>
-          <img className={styles.moreImage} onClick={handleMoreClick} src={more} alt="" />
-          { isDropdownOpen && 
-            <AnswerDropdown onClick={handleEditClick}/> 
-          }
-        </div>
+        { !isRejected && (
+          <div className={styles.dropdownGroup}>
+            <img className={styles.moreImage} onClick={handleMoreClick} src={more} alt="" />
+            { isDropdownOpen && 
+              <AnswerDropdown onClick={handleEditClick}/> 
+            }
+          </div>
+        )}
       </div>
       <div className={styles.question}>
         <span className={styles.questionMeta}>질문 · {formatRelativeDate(createdAt)}</span>
         <span className={styles.questionText}>{content}</span>
       </div>
-      { shouldShowEdit && (
-        <FeedCardEdit 
-          answer={answer} 
-          onEditing={isEditing} 
-          setOnEditing={setIsEditing} 
-          setOnEditDone={setIsEditDone}
-        />
-      )}
+      <FeedCardEdit
+        answer={answer}
+        createdAt={createdAt}
+        subject={subject}
+        onEditing={isEditing} 
+        setOnEditing={setIsEditing} 
+        setOnEditDone={setIsEditDone}
+      />
       <div className={styles.reactions}>
-        <div className={styles.reactionGroup}> 
-          <div className={styles.reactionButton}>
-            <img className={styles.reactionImg} src={thumbsUp} alt="" />
+        <div className={styles.reactionGroup}>
+          <button
+            className={`${styles.reactionButton} ${myReaction === 'like' ? styles.active : ''}`}
+            type="button"
+            onClick={() => handleReactionClick('like')}
+          >
+            <span className={`${styles.reactionIcon} ${styles.likeIcon}`} />
             <span>좋아요 {like}</span>
-          </div>
-          <div className={styles.reactionButton}>
-            <img className={styles.reactionImg} src={thumbsDown} alt="" />
+          </button>
+          <button
+            className={`${styles.reactionButton} ${myReaction === 'dislike' ? styles.active : ''}`}
+            type="button"
+            onClick={() => handleReactionClick('dislike')}
+          >
+            <span className={`${styles.reactionIcon} ${styles.dislikeIcon}`} />
             <span>싫어요 {dislike}</span>
-          </div>
+          </button>
         </div>
-      </div> 
+      </div>
     </section>
   );
 }

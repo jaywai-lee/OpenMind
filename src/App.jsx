@@ -9,12 +9,12 @@ import SubjectsFeedPage from './pages/SubjectsFeedPage';
 function App() {
   const isDevelopment = import.meta.env.MODE === 'development';
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/post/:id" element={<SubjectsFeedPage />} />
-        <Route path="/answer" element={<AnswerPage />} />
-        <Route path="/list" element={<ListPage />} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/post/:id" element={<SubjectsFeedPage />} />
+          <Route path="/answer/:id" element={<AnswerPage />} />
+          <Route path="/list" element={<ListPage />} />
 
         {/* component test */}
         {isDevelopment && (

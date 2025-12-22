@@ -2,7 +2,6 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { getSubjectList } from '../api/subjects';
 import styles from './UserCard.module.css';
-import UserImage from '../assets/images/userimage-sample.png';
 import messageImg from '../assets/icons/messages.svg';
 import { Link } from 'react-router-dom';
 

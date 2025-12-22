@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import styles from './_ComponentsPage.module.css';
 import Badge from './Badge/Badge';
 import Button from './Button/Button';
 import FloatingButton from './Button/FloatingButton';
 import { ArrowRightLineDisabled } from './Icons/Icons';
+import Modal from './modal/QuestionModal';
 
 function _ComponentPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className={styles.container}>
       <Badge status="done" /> {/* 답변완료 뱃지 표시 */}
@@ -29,6 +32,12 @@ function _ComponentPage() {
         <div className={styles.floatingSmall}>
           <FloatingButton size="small">삭제하기</FloatingButton>
         </div>
+        <div className={styles.floatingSmall}>
+          <FloatingButton size="small" onClick={() => setIsModalOpen(true)}>
+            모달열기
+          </FloatingButton>
+        </div>
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       </div>
     </div>
   );

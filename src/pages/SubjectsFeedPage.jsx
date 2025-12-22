@@ -1,39 +1,74 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getSubject } from '../api/subjects';
+import { getSubjects } from '../api/subjects';
 import { getQuestionsBySubject, postQuestionReaction } from '../api/questions';
 import FeedHeader from '../components/FeedHeader';
 import SubjectsFeedCard from '../components/SubjectsFeedCard';
 import FloatingButton from '../components/FloatingButton';
+import useInfiniteScroll from '../hooks/useInfiniteScroll';
 
 function SubjectsFeedPage() {
   const { id: subjectId } = useParams();
+  const [subject, setSubject] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [count, setCount] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [next, setNext] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [subject, setSubject] = useState(null);
 
   useEffect(() => {
     if (!subjectId) return;
-    const fetchData = async () => {
+    const initFetch = async () => {
       try {
         setIsLoading(true);
+        setError(null);
         const [subjectData, questionsData] = await Promise.all([
-          getSubject(subjectId),
-          getQuestionsBySubject(subjectId),
+          getSubjects(subjectId),
+          getQuestionsBySubject(subjectId, {
+            limit: 4,
+            offset: 0,
+          }),
         ]);
         setSubject(subjectData);
         setQuestions(questionsData.results);
         setCount(questionsData.count);
+        setNext(questionsData.next);
+        setHasMore(!!questionsData.next);
       } catch (err) {
         setError('데이터를 불러오지 못했습니다.');
       } finally {
         setIsLoading(false);
       }
     };
-    fetchData();
+    setQuestions([]);
+    setNext(null);
+    setHasMore(true);
+
+    initFetch();
   }, [subjectId]);
+
+  const fetchNextQuestions = async () => {
+    if (!next || isLoading || !hasMore) return;
+    try {
+      setIsLoading(true);
+      const data = await fetch(next).then((res) => res.json());
+      setQuestions((prev) => [...prev, ...data.results]);
+      setNext(data.next);
+      setHasMore(!!data.next);
+    } catch (err) {
+      console.error('추가 질문 로딩 실패', err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const loadMoreRef = useInfiniteScroll({
+    onIntersect: fetchNextQuestions,
+    enabled: hasMore,
+    loading: isLoading,
+    rootMargin: '100px',
+  });
 
   const handleReaction = async (questionId, type) => {
     try {
@@ -49,9 +84,8 @@ function SubjectsFeedPage() {
   return (
     <>
       <FeedHeader subject={subject} />
-      {isLoading && <p>로딩 중...</p>}
       {error && <p>{error}</p>}
-      {!isLoading && !error && (
+      {!error && (
         <SubjectsFeedCard
           subject={subject}
           count={count}
@@ -59,6 +93,8 @@ function SubjectsFeedPage() {
           onReact={handleReaction}
         />
       )}
+      <div ref={loadMoreRef} style={{ height: 1 }} />
+      {isLoading && <p style={{ textAlign: 'center' }}>불러오는 중...</p>}
       <FloatingButton onClick={() => console.log('button clicked')} />
     </>
   );

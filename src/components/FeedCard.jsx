@@ -6,15 +6,19 @@ import FloatingButton from './common/Button/FloatingButton';
 function FeedCard({ subject, count, questions, onReact }) {
   return (
     <div className={styles.FeedCardContainer}>
-      { questions?.length > 0 && (
+      {questions?.length > 0 && (
         <div className={styles.deleteButton}>
-          <FloatingButton theme="dark" size="small">삭제하기</FloatingButton>
+          <FloatingButton theme="dark" size="small">
+            삭제하기
+          </FloatingButton>
         </div>
       )}
       <section className={styles.messageSection}>
         <div className={styles.messageContainer}>
-          <Messages width={24} height={24} fill="#542F1A"/>
-          <span className={styles.messageText}>{count}개의 질문이 있습니다</span>
+          <Messages width={24} height={24} fill="#542F1A" />
+          <span className={styles.messageText}>
+            {count}개의 질문이 있습니다
+          </span>
         </div>
         {questions.map((question) => (
           <FeedCardList

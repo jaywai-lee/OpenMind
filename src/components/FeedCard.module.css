@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin: 54px auto 60px;
+  margin: 10px auto 140px;
   width: 716px;
 }
 .messageSection {
@@ -19,14 +19,14 @@
   height: 35px;
   margin-bottom: 9px;
 }
-.messageContainer { 
+.messageContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 16px 0 16px 0;  
+  margin: 16px 0 16px 0;
   gap: 8px;
 }
-.messageImage{
+.messageImage {
   height: 24px;
   width: 24px;
   filter: brightness(0) saturate(100%) invert(18%) sepia(8%) saturate(3659%)
@@ -37,4 +37,21 @@
   color: var(--Brown-40);
   font-weight: 400;
   font-size: 20px;
+}
+
+@media (max-width: 769px) {
+  .FeedCardContainer {
+    width: 704px;
+  }
+}
+
+@media (max-width: 376px) {
+  .FeedCardContainer {
+    width: 327px;
+    margin: 23px auto 168px;
+  }
+
+  .messageText {
+    font-size: 18px;
+  }
 }

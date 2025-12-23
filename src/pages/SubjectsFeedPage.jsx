@@ -4,7 +4,7 @@ import { getSubject } from '../api/subjects';
 import { getQuestionsBySubject, postQuestionReaction } from '../api/questions';
 import FeedHeader from '../components/FeedHeader';
 import SubjectsFeedCard from '../components/SubjectsFeedCard';
-import FloatingButton from '../components/common/button/FloatingButton';
+import FloatingButton from '../components/common/Button/FloatingButton';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import QuestionModal from '../components/common/modal/QuestionModal';
 

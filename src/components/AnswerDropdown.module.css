@@ -1,6 +1,7 @@
 .dropdownContainer {
   width: 103px;
-  height: 102px;
+  min-height: 68px;
+  height: auto;
   background: var(--Grayscale-10);
   border: 1px solid var(--Grayscale-30);
   box-shadow: var(--box-shadow-1pt);
@@ -13,16 +14,6 @@
   right: 0;
 }
 .dropdownGroup {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-  height: 30px;
-  width: 103px;
-  color: var(--Grayscale-50);
-  cursor: pointer;
-}
-.dropdownRejectGroup {
   display: flex;
   justify-content: center;
   align-items: center;

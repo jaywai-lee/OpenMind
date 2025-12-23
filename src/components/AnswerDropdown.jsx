@@ -1,6 +1,7 @@
 import styles from './AnswerDropdown.module.css';
 import close from '../assets/icons/close.svg';
 import edit from '../assets/icons/edit.svg';
+import reject from '../assets/icons/rejection.svg';
 
 function AnswerDropdown({ onClick }) {
   return (
@@ -12,6 +13,10 @@ function AnswerDropdown({ onClick }) {
       <div className={styles.dropdownGroup}>
         <img className={styles.dropdownImage} src={close} alt="" />
         <span className={styles.dropdownText}>삭제하기</span>
+      </div>
+      <div className={styles.dropdownRejectGroup}>
+        <img className={styles.dropdownImage} src={reject} alt="" />
+        <span className={styles.dropdownText}>답변거절</span>
       </div>
     </div>
   );

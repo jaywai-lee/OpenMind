@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/post/:id" element={<SubjectsFeedPage />} />
-          <Route path="/answer/:id" element={<AnswerPage />} />
+          <Route path="/post/:id/answer" element={<AnswerPage />} />
           <Route path="/list" element={<ListPage />} />
 
         {/* component test */}

@@ -1,6 +1,6 @@
 .dropdownContainer {
   width: 103px;
-  height: 68px;
+  height: 102px;
   background: var(--Grayscale-10);
   border: 1px solid var(--Grayscale-30);
   box-shadow: var(--box-shadow-1pt);
@@ -21,6 +21,28 @@
   width: 103px;
   color: var(--Grayscale-50);
   cursor: pointer;
+}
+.dropdownRejectGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  height: 30px;
+  width: 103px;
+  color: var(--Grayscale-50);
+  cursor: pointer;
+}
+.dropdownRejectGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  height: 30px;
+  width: 103px;
+  color: var(--Grayscale-50);
+  cursor: pointer;
+  filter: brightness(0) saturate(100%) invert(23%) 
+  sepia(78%) saturate(1774%) hue-rotate(336deg) brightness(94%) contrast(92%);
 }
 .dropdownImage {
   width: 14px;

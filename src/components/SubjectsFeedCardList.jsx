@@ -1,21 +1,30 @@
 import styles from './SubjectsFeedCardList.module.css';
 import { formatRelativeDate } from '../utils/formatRelativeDate';
 import Badge from '../../src/components/common/Badge/Badge';
+import storage from '../utils/storage';
 
 function SubjectsFeedCardList({ subject, question, onReact }) {
   const { id, content, createdAt, like, dislike, answer } = question;
-  const subjectId = localStorage.getItem('subjectId');
-  const storageKey = `reactions-${subjectId}`;
-  const reactions = JSON.parse(localStorage.getItem(storageKey) || '{}');
+  const userId = storage.get('userId', null);
+  const subjectId = subject?.id;
+  if (!userId || !subjectId) {
+    console.log('userId또는 subjectId가 없습니다.');
+  }
+  const storageKey =
+    userId && subjectId ? `reactions-${userId}-${subjectId}` : null;
+  const reactions = storageKey ? storage.get(storageKey, {}) : {};
   const myReaction = reactions[id];
   const isAnswered = !!answer && !answer.isRejected;
   const isRejected = !!answer && answer.isRejected;
 
   const handleReactionClick = (type) => {
-    if (myReaction) return;
+    if (myReaction || !storageKey) return;
     onReact(id, type);
-    reactions[id] = type;
-    localStorage.setItem(storageKey, JSON.stringify(reactions));
+    const nextReactions = {
+      ...reactions,
+      [id]: type,
+    };
+    storage.set(storageKey, nextReactions);
   };
 
   return (
@@ -74,6 +83,7 @@ function SubjectsFeedCardList({ subject, question, onReact }) {
           <button
             className={`${styles.reactionButton} ${myReaction === 'like' ? styles.active : ''}`}
             type="button"
+            disabled={!userId || myReaction}
             onClick={() => handleReactionClick('like')}
           >
             <span className={`${styles.reactionIcon} ${styles.likeIcon}`} />
@@ -82,6 +92,7 @@ function SubjectsFeedCardList({ subject, question, onReact }) {
           <button
             className={`${styles.reactionButton} ${myReaction === 'dislike' ? styles.active : ''}`}
             type="button"
+            disabled={!userId || myReaction}
             onClick={() => handleReactionClick('dislike')}
           >
             <span className={`${styles.reactionIcon} ${styles.dislikeIcon}`} />

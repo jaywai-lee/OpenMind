@@ -11,9 +11,21 @@ export async function copyLink(url) {
 }
 
 /** 카카오톡 공유 */
+const KAKAO_JS_KEY = 'dccf6b636cce3f62bb5ab1753fc0f038';
+
+function initKakao() {
+  if (!window.Kakao) {
+    console.error('Kakao SDK not loaded');
+    return;
+  }
+  if (!window.Kakao.isInitialized()) {
+    window.Kakao.init(KAKAO_JS_KEY);
+    console.log('Kakao initialized');
+  }
+}
+
 export function shareKakao({ url, title, description, imageUrl }) {
-  Kakao.init('dccf6b636cce3f62bb5ab1753fc0f038');
-  Kakao.isInitialized();
+  initKakao();
   window.Kakao.Share.sendDefault({
     objectType: 'feed',
     content: {

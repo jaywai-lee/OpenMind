@@ -1,6 +1,6 @@
 import styles from './FeedCard.module.css';
 import FeedCardList from './FeedCardList';
-import messages from '../assets/icons/messages.svg';
+import Messages from '../assets/icons/messages.svg?react';
 import FloatingButton from './common/Button/FloatingButton';
 
 function FeedCard({ subject, count, questions, onReact }) {
@@ -13,7 +13,7 @@ function FeedCard({ subject, count, questions, onReact }) {
       )}
       <section className={styles.messageSection}>
         <div className={styles.messageContainer}>
-          <img className={styles.messageImage} src={messages} alt="" />
+          <Messages width={24} height={24} fill="#542F1A"/>
           <span className={styles.messageText}>{count}개의 질문이 있습니다</span>
         </div>
         {questions.map((question) => (

@@ -1,23 +1,23 @@
 import styles from './AnswerDropdown.module.css';
-import close from '../assets/icons/close.svg';
-import edit from '../assets/icons/edit.svg';
-import reject from '../assets/icons/rejection.svg';
+import Close from '../assets/icons/close.svg?react';
+import Edit from '../assets/icons/edit.svg?react';
+import Reject from '../assets/icons/rejection.svg?react';
 
 function AnswerDropdown({ onClick, answer }) {
   return (
     <div className={styles.dropdownContainer}>
       <div className={styles.dropdownGroup} onClick={onClick}>
-        <img className={styles.dropdownImage} src={edit} alt="" />
+        <Edit className={styles.dropdownImage}/>
         <span className={styles.dropdownText}>수정하기</span>
       </div>
       <div className={styles.dropdownGroup}>
-        <img className={styles.dropdownImage} src={close} alt="" />
+        <Close className={styles.dropdownImage}/>
         <span className={styles.dropdownText}>삭제하기</span>
       </div>
       { !answer && (
         <div className={styles.dropdownRejectGroup}>
-          <img className={styles.dropdownImage} src={reject} alt="" />
-          <span className={styles.dropdownText}>답변거절</span>
+          <Reject width={14} height={14} fill="#B93333"/>
+          <span className={styles.dropdownRejectText}>답변거절</span>
         </div>
       )}
     </div>

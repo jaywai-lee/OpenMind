@@ -19,7 +19,7 @@
   align-items: center;
   gap: 3px;
   height: 30px;
-  width: 103px;
+  width: 100%;
   color: var(--Grayscale-50);
   cursor: pointer;
 }
@@ -29,21 +29,28 @@
   align-items: center;
   gap: 3px;
   height: 30px;
-  width: 103px;
+  width: 100px;
   color: var(--Grayscale-50);
   cursor: pointer;
-  filter: brightness(0) saturate(100%) invert(23%) 
-  sepia(78%) saturate(1774%) hue-rotate(336deg) brightness(94%) contrast(92%);
 }
 .dropdownImage {
   width: 14px;
   height: 14px;
+  fill: var(--Grayscale-50);
 }
 .dropdownText {
   font-size: 14px;
   font-weight: 500;
 }
-.dropdownGroup:hover {
-  filter: brightness(0) saturate(100%) invert(32%) 
-  sepia(90%) saturate(3792%) hue-rotate(209deg) brightness(105%) contrast(90%);
+.dropdownRejectText {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--Red-50);
 }
+.dropdownGroup:hover {
+  color: var(--Blue-50);
+}
+.dropdownGroup:hover .dropdownImage {
+  fill: var(--Blue-50);
+}
+

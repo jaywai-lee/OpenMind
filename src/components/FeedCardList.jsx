@@ -42,7 +42,7 @@ function FeedCardList({ subject, question, onReact }) {
           <div className={styles.dropdownGroup}>
             <img className={styles.moreImage} onClick={handleMoreClick} src={more} alt="" />
             { isDropdownOpen && 
-              <AnswerDropdown onClick={handleEditClick}/> 
+              <AnswerDropdown onClick={handleEditClick} answer={answer}/> 
             }
           </div>
         )}

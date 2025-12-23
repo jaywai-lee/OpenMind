@@ -6,11 +6,11 @@ import FloatingButton from './common/Button/FloatingButton';
 function FeedCard({ subject, count, questions, onReact }) {
   return (
     <div className={styles.FeedCardContainer}>
-      { questions ? (
+      { questions?.length > 0 && (
         <div className={styles.deleteButton}>
           <FloatingButton theme="dark" size="small">삭제하기</FloatingButton>
         </div>
-      ) : null}
+      )}
       <section className={styles.messageSection}>
         <div className={styles.messageContainer}>
           <img className={styles.messageImage} src={messages} alt="" />

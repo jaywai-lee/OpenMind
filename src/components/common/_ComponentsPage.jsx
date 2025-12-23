@@ -3,8 +3,8 @@ import styles from './_ComponentsPage.module.css';
 import Badge from './Badge/Badge';
 import Button from './Button/Button';
 import FloatingButton from './Button/FloatingButton';
-import { ArrowRightLineDisabled } from './Icons/Icons';
 import Modal from './modal/QuestionModal';
+import ArrowRightLineDisabled from '../../assets/icons/arrow-right-line-disabled.svg?react';
 
 function _ComponentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,7 +25,9 @@ function _ComponentPage() {
         <Button theme="white" size="small" isDisabled={false}>
           aaaaa
         </Button>
-        <ArrowRightLineDisabled color="#c7bbb5" size={30} />
+        <ArrowRightLineDisabled width={50} height={50} fill="#c7bbb5" />
+        <ArrowRightLineDisabled width={50} height={50} fill="#542f1a" />
+        <ArrowRightLineDisabled width={50} height={50} fill="red" />
         <div className={styles.floatingBig}>
           <FloatingButton>질문 작성하기</FloatingButton>
         </div>

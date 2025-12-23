@@ -5,10 +5,12 @@ import ListPage from './pages/ListPage';
 import AnswerPage from './pages/AnswerPage';
 import _ComponentPage from './components/common/_ComponentsPage';
 import SubjectsFeedPage from './pages/SubjectsFeedPage';
+import { ToastProvider } from './context/ToastContext';
 
 function App() {
   const isDevelopment = import.meta.env.MODE === 'development';
   return (
+    <ToastProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainPage />} />
@@ -16,12 +18,13 @@ function App() {
           <Route path="/post/:id/answer" element={<AnswerPage />} />
           <Route path="/list" element={<ListPage />} />
 
-        {/* component test */}
-        {isDevelopment && (
-          <Route path="component" element={<_ComponentPage />} />
-        )}
-      </Routes>
-    </BrowserRouter>
+          {/* component test */}
+          {isDevelopment && (
+            <Route path="component" element={<_ComponentPage />} />
+          )}
+        </Routes>
+      </BrowserRouter>
+    </ToastProvider>
   );
 }
 

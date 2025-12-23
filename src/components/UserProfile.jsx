@@ -2,7 +2,7 @@ import styles from './UserProfile.module.css';
 import linkShare from '../assets/icons/link-share.svg';
 import kakaoShare from '../assets/icons/kakao-share.svg';
 import facebookShare from '../assets/icons/facebook-share.svg';
-import { copyLink, shareKakao, shareFacebook } from '../api/share';
+import { copyLink, shareKakao, shareFacebook } from '../utils/share';
 
 function UserProfile({ subject }) {
   const currentUrl = window.location.href;

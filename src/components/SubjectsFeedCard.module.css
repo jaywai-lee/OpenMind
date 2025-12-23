@@ -17,6 +17,13 @@
   align-items: center;
   gap: 8px;
 }
+
+.messageImage {
+  height: 24px;
+  width: 24px;
+  fill: var(--Brown-40);
+}
+
 .blankImage {
   width: 150px;
   height: 154px;
@@ -36,15 +43,35 @@
   margin: 16px 0 16px 0;
   gap: 8px;
 }
-.messageImage {
-  height: 24px;
-  width: 24px;
-  filter: brightness(0) saturate(100%) invert(18%) sepia(8%) saturate(3659%)
-    hue-rotate(337deg) brightness(100%) contrast(93%);
-}
 .messageText {
   font-family: 'Actor';
   color: var(--Brown-40);
   font-weight: 400;
   font-size: 20px;
+}
+
+@media (max-width: 769px) {
+  .emptySection {
+    width: 704px;
+  }
+
+  .messageSection {
+    width: 704px;
+  }
+}
+
+@media (max-width: 376px) {
+  .emptySection {
+    width: 327px;
+  }
+
+  .messageSection {
+    width: 327px;
+    margin-bottom: 0;
+  }
+
+  .messageImage {
+    height: 22px;
+    width: 22px;
+  }
 }

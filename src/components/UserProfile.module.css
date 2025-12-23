@@ -30,3 +30,18 @@ body {
 button {
   padding: 0;
 }
+
+@media (max-width: 376px) {
+  .profile {
+    margin-top: -75px;
+  }
+
+  .avatar {
+    width: 104px;
+    height: 104px;
+  }
+
+  .nickname {
+    font-size: 24px;
+  }
+}

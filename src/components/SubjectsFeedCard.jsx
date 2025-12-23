@@ -1,6 +1,6 @@
 import styles from './SubjectsFeedCard.module.css';
 import SubjectsFeedCardList from './SubjectsFeedCardList';
-import messages from '../assets/icons/messages.svg';
+import Messages from '../assets/icons/messages.svg?react';
 import blankImage from '../assets/images/blank-image.png';
 
 function SubjectsFeedCard({ subject, count, questions, onReact }) {
@@ -9,7 +9,7 @@ function SubjectsFeedCard({ subject, count, questions, onReact }) {
       <section className={styles.emptySection}>
         <div className={styles.emptyContainer}>
           <div className={styles.messageGroup}>
-            <img className={styles.messageImage} src={messages} alt="" />
+            <Messages className={styles.messageImage} />
             <span className={styles.messageText}>아직 질문이 없습니다</span>
           </div>
           <img className={styles.blankImage} src={blankImage} alt="empty" />
@@ -20,7 +20,12 @@ function SubjectsFeedCard({ subject, count, questions, onReact }) {
   return (
     <section className={styles.messageSection}>
       <div className={styles.messageContainer}>
-        <img className={styles.messageImage} src={messages} alt="" />
+        <Messages
+          className={styles.messageImage}
+          width={24}
+          height={24}
+          fill="#542f1a"
+        />
         <span className={styles.messageText}>{count}개의 질문이 있습니다</span>
       </div>
       {questions.map((question) => (

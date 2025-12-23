@@ -2,6 +2,8 @@ import styles from './SubjectsFeedCardList.module.css';
 import { formatRelativeDate } from '../utils/formatRelativeDate';
 import Badge from '../../src/components/common/Badge/Badge';
 import storage from '../utils/storage';
+import ThumbsUp from '../assets/icons/thumbs-up.svg?react';
+import ThumbsDown from '../assets/icons/thumbs-down.svg?react';
 
 function SubjectsFeedCardList({ subject, question, onReact }) {
   const { id, content, createdAt, like, dislike, answer } = question;
@@ -54,7 +56,7 @@ function SubjectsFeedCardList({ subject, question, onReact }) {
                 {formatRelativeDate(answer.createdAt)}
               </span>
             </div>
-            <p className={styles.answerContent}>{answer.content}</p>
+            <p className={styles.answerText}>{answer.content}</p>
           </div>
         </div>
       )}
@@ -86,7 +88,7 @@ function SubjectsFeedCardList({ subject, question, onReact }) {
             disabled={!userId || myReaction}
             onClick={() => handleReactionClick('like')}
           >
-            <span className={`${styles.reactionIcon} ${styles.likeIcon}`} />
+            <ThumbsUp className={styles.icon} />
             <span>좋아요 {like}</span>
           </button>
           <button
@@ -95,7 +97,7 @@ function SubjectsFeedCardList({ subject, question, onReact }) {
             disabled={!userId || myReaction}
             onClick={() => handleReactionClick('dislike')}
           >
-            <span className={`${styles.reactionIcon} ${styles.dislikeIcon}`} />
+            <ThumbsDown className={styles.icon} />
             <span>싫어요 {dislike}</span>
           </button>
         </div>

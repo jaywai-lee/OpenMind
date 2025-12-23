@@ -1,0 +1,23 @@
+.floatingGroup {
+  width: 208px;
+  height: 54px;
+  position: fixed;
+  bottom: 24px;
+  right: 374px;
+}
+
+@media (max-width: 769px) {
+  .floatingGroup {
+    right: 24px;
+  }
+}
+
+@media (max-width: 376px) {
+  .floatingGroup {
+    width: 123px;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+}

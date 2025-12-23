@@ -18,3 +18,14 @@
   height: 67px;
   transform: translateY(-30px);
 }
+
+@media (max-width: 376px) {
+  .header {
+    height: 177px;
+  }
+
+  .logo {
+    width: 124px;
+    height: 49px;
+  }
+}

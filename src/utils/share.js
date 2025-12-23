@@ -11,8 +11,7 @@ export async function copyLink(url) {
 }
 
 /** 카카오톡 공유 */
-const KAKAO_JS_KEY = 'dccf6b636cce3f62bb5ab1753fc0f038';
-
+const KAKAO_JS_KEY = import.meta.env.VITE_KAKAO_JS_KEY;
 function initKakao() {
   if (!window.Kakao) {
     console.error('Kakao SDK not loaded');

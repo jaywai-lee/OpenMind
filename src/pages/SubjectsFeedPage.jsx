@@ -7,6 +7,7 @@ import SubjectsFeedCard from '../components/SubjectsFeedCard';
 import FloatingButton from '../components/common/Button/FloatingButton';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import QuestionModal from '../components/common/modal/QuestionModal';
+import SubjectsFeedFooter from '../components/SubjectsFeedFooter';
 
 function SubjectsFeedPage() {
   const { id: subjectId } = useParams();
@@ -113,19 +114,7 @@ function SubjectsFeedPage() {
       )}
       <div ref={loadMoreRef} style={{ height: 1 }} />
       {isLoading && <p style={{ textAlign: 'center' }}>불러오는 중...</p>}
-      <div
-        style={{
-          width: '208px',
-          height: '52px',
-          position: 'fixed',
-          bottom: '24px',
-          right: '24px',
-        }}
-      >
-        <FloatingButton onClick={() => setIsModalOpen(true)}>
-          질문 작성하기
-        </FloatingButton>
-      </div>
+      <SubjectsFeedFooter onOpenModal={() => setIsModalOpen(true)} />
       <QuestionModal
         isOpen={isModalOpen}
         subject={feed.subject}

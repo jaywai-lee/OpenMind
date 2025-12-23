@@ -1,5 +1,6 @@
-import { ArrowRightLine, ArrowRightLineDisabled } from '../Icons/Icons';
 import styles from './Button.module.css';
+import ArrowRightLine from '../../../assets/icons/arrow-right-line.svg?react';
+import ArrowRightLineDisabled from '../../../assets/icons/arrow-right-line-disabled.svg?react';
 /**
  * 버튼 컴포넌트 (값 타입 설명)
  * style: width 100% 이므로 이 컴포넌트를 감싸고 있는 부모에서 width 값 제어해야 함
@@ -21,9 +22,9 @@ function Button({ children, theme, size, onClick, isDisabled, ...props }) {
       {showArrow && (
         <span className={styles.iconGroup}>
           {isDisabled ? (
-            <ArrowRightLineDisabled color="#c7bbb5" />
+            <ArrowRightLineDisabled width={18} height={18} fill="#c7bbb5" />
           ) : (
-            <ArrowRightLine color="#542f1a" size={18} />
+            <ArrowRightLine width={18} height={18} fill="#542f1a" />
           )}
         </span>
       )}

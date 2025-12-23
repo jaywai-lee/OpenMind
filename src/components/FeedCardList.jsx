@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import styles from './FeedCardList.module.css';
-import more from '../assets/icons/more.svg';
+import More from '../assets/icons/more.svg?react';
+import ThumbsUp from '../assets/icons/thumbs-up.svg?react';
+import ThumbsDown from '../assets/icons/thumbs-down.svg?react';
 import AnswerDropdown from './AnswerDropdown';
 import FeedCardEdit from './FeedCardEdit';
 import { formatRelativeDate } from '../utils/formatRelativeDate';
@@ -40,7 +42,7 @@ function FeedCardList({ subject, question, onReact }) {
         <Badge status={ shouldShowBadgeStatus ? 'done' : 'waiting'} />
         { !isRejected && (
           <div className={styles.dropdownGroup}>
-            <img className={styles.moreImage} onClick={handleMoreClick} src={more} alt="" />
+            <More className={styles.moreImage} onClick={handleMoreClick}/>
             { isDropdownOpen && 
               <AnswerDropdown onClick={handleEditClick} answer={answer}/> 
             }
@@ -66,7 +68,7 @@ function FeedCardList({ subject, question, onReact }) {
             type="button"
             onClick={() => handleReactionClick('like')}
           >
-            <span className={`${styles.reactionIcon} ${styles.likeIcon}`} />
+            <ThumbsUp className={styles.reactionIcon}/>
             <span>좋아요 {like}</span>
           </button>
           <button
@@ -74,7 +76,7 @@ function FeedCardList({ subject, question, onReact }) {
             type="button"
             onClick={() => handleReactionClick('dislike')}
           >
-            <span className={`${styles.reactionIcon} ${styles.dislikeIcon}`} />
+            <ThumbsDown className={styles.reactionIcon} />
             <span>싫어요 {dislike}</span>
           </button>
         </div>

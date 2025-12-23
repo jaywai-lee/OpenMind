@@ -3,6 +3,8 @@ import Button from '../Button/Button';
 import styles from './QuestionModal.module.css';
 import { useEffect, useState } from 'react';
 import { createQuestion } from '../../../api/questions';
+import Messages from '../../../assets/icons/messages.svg?react';
+import Close from '../../../assets/icons/close.svg?react';
 
 /**
  * 질문하기 모달창
@@ -76,7 +78,31 @@ function QuestionModal({ isOpen, subject, onClose, onRefresh }) {
           onSubmit={handleSubmit}
         >
           <div>
-            <h3>질문을 작성하세요</h3>
+            <div className={styles.headGroup}>
+              <div className={styles.headTextGroup}>
+                <Messages
+                  width={28}
+                  height={28}
+                  fill="#000000"
+                  className={styles.message}
+                />
+                <h3>질문을 작성하세요</h3>
+              </div>
+              <button
+                type="button"
+                onClick={onClose}
+                style={{
+                  cursor: 'pointer',
+                }}
+              >
+                <Close
+                  width={28}
+                  height={28}
+                  fill="#000000"
+                  className={styles.close}
+                />
+              </button>
+            </div>
             <span className={styles.receiveNameGroup}>
               To.
               <img className={styles.userProfileImage} src={imageSource} />

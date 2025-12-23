@@ -6,6 +6,7 @@
 .profileImage {
   width: 48px;
   height: 48px;
+  border-radius: 50%;
 }
 .answerFormBody {
   display: flex;
@@ -44,7 +45,7 @@
   resize: none;
 }
 .answerText {
-  text-align: left;
+  text-align: start;
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
@@ -56,3 +57,19 @@
   margin-top: 8px;
 }
 
+@media (max-width: 769px) {
+  .answerInput {
+    width: 548px;
+  }
+}
+
+@media (max-width: 376px) {
+  .answerInput {
+    width: 203px;
+  }
+
+  .profileImage {
+    width: 32px;
+    height: 32px;
+  }
+}

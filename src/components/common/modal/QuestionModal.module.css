@@ -44,7 +44,6 @@ h3 {
 .close {
   display: inline-block;
   vertical-align: sub;
-  /* cursor: pointer; */
 }
 .receiveNameGroup {
   font-family: Actor;

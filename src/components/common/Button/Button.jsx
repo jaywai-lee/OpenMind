@@ -8,7 +8,7 @@ import ArrowRightLineDisabled from '../../../assets/icons/arrow-right-line-disab
  * theme: "dark" / "white" (string),
  * onClick: (function) 클릭이벤트,
  * isDisabled: (Boolean) 비활성처리
- * hasArrow: (Boolean) 기본값 true  - 'white' theme 에만 적용
+ * hasArrow: (Boolean) 기본값 true  - 'white' theme 에만 적용.
  * @props { children, theme, onClick, isDisabled }
  * @returns <button> 버튼
  */

@@ -6,6 +6,7 @@ import FloatingButton from './Button/FloatingButton';
 import Modal from './modal/QuestionModal';
 import ConfirmModal from './modal/ConfirmModal';
 import ArrowRightLineDisabled from '../../assets/icons/arrow-right-line-disabled.svg?react';
+import MeatballMenu from './Dropdown/MoreDropDown';
 
 function _ComponentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -63,6 +64,13 @@ function _ComponentPage() {
           onClose={() => setIsConfirmModalOpen(false)}
           onConfirm={handleConfirm}
         />
+        <MeatballMenu
+          onEdit={() => console.log('수정')}
+          onDelete={() => console.log('삭제')}
+          onReject={() => console.log('거절')}
+        >
+          <div>...</div>
+        </MeatballMenu>
       </div>
     </div>
   );

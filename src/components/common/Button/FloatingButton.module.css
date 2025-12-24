@@ -10,7 +10,19 @@
   box-shadow: var(--box-shadow-2pt);
 }
 
-.floatingButton.small {
+/* .floatingButton.small {
   font-size: 15px;
   padding: 5px 24px;
+} */
+
+/* tablet 일 (기준: 768px 이하) */
+@media (max-width: 768px) {
+}
+
+/* mobile (기준: 375px 이하) */
+@media (max-width: 375px) {
+  .floatingButton {
+    font-size: 15px;
+    padding: 5px 24px;
+  }
 }

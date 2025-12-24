@@ -1,0 +1,46 @@
+.MoreDropDownContainer {
+  position: relative;
+  display: inline-block;
+}
+.MoreDropdownGroup {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  width: 103px;
+  font-weight: var(--font-weight-medium);
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--Grayscale-50);
+  border: 1px solid var(--Grayscale-30);
+  border-radius: 8px;
+  background: var(--Grayscale-10);
+  box-shadow: var(--box-shadow-1pt);
+  padding: 4px 0;
+  z-index: 1000;
+}
+.edit,
+.delete,
+.reject {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+  fill: currentColor;
+}
+.menuItem {
+  width: 100%;
+  cursor: pointer;
+  padding: 6px 15px;
+  transition: all 0.2s;
+}
+.menuItem:hover {
+  background-color: var(--Grayscale-20);
+  color: var(--Blue-50);
+}
+
+.menuItem:last-child {
+  color: var(--Red-50);
+}
+
+.menuItem:last-child svg {
+  fill: var(--Red-50);
+}

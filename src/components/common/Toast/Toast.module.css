@@ -1,0 +1,47 @@
+.toastContainer {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 9999;
+}
+.toast {
+  min-width: 167px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--Grayscale-10);
+  font-weight: var(--font-weight-medium);
+  font-size: 14px;
+  border-radius: 8px;
+  background: var(--Grayscale-60);
+  box-shadow: var(--box-shadow-2pt);
+  padding: 12px 20px;
+  animation: fadeUp 0.3s ease-out;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* tablet 일 (기준: 768px 이하) */
+@media (max-width: 768px) {
+}
+
+/* mobile (기준: 375px 이하) */
+@media (max-width: 375px) {
+  .toastContainer {
+    bottom: 100px;
+  }
+}

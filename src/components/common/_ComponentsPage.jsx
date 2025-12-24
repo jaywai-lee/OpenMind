@@ -5,13 +5,23 @@ import Button from './Button/Button';
 import FloatingButton from './Button/FloatingButton';
 import Modal from './modal/QuestionModal';
 import ArrowRightLineDisabled from '../../assets/icons/arrow-right-line-disabled.svg?react';
+import { useToast } from '../../context/ToastContext';
 
 function _ComponentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { toast } = useToast();
   return (
     <div className={styles.container}>
-      <Badge status="done" /> {/* 답변완료 뱃지 표시 */}
-      <Badge status="waiting" /> {/* 미답변 뱃지 표시 */}
+      <Badge status="done" />
+      <Badge status="waiting" />
+      <Button
+        theme="white"
+        size="small"
+        isDisabled={false}
+        onClick={() => toast('URL이 복사되었습니다 아아아아아아아아아아')}
+      >
+        토스트
+      </Button>
       <div>
         <Button theme="dark" isDisabled={false}>
           aaaaa

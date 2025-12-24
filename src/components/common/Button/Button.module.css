@@ -16,11 +16,12 @@
   border: 1px solid transparent;
 }
 
-.small {
+/* .small {
   height: 34px;
   padding: 0 12px;
   font-size: 14px;
-}
+  //
+} */
 
 .dark {
   color: var(--Grayscale-10);
@@ -50,24 +51,25 @@
   justify-content: space-between;
 }
 
-.white.small {
+/* .white.small {
   font-size: 14px;
-}
+} */
+
 .Button.white:hover {
   box-shadow: 0 0 0 1px var(--Brown-40) inset;
 }
 
-.Button.white.small:hover {
+/* .Button.white.small:hover {
   box-shadow: 0 0 0 1px var(--Brown-40) inset;
   padding: 8px 12px;
-}
+} */
 
 .Button.white:active {
   background: var(--Brown-20);
 }
-.Button.white.small:active {
+/* .Button.white.small:active {
   padding: 8px 12px;
-}
+} */
 
 .Button.white:disabled {
   color: var(--Brown-30);
@@ -80,7 +82,34 @@
 .Button.white.small:disabled {
 }
 
+.noArrow {
+  justify-content: center;
+}
+
 .iconGroup {
   display: flex;
   align-items: center;
+}
+
+/* tablet 일 (기준: 768px 이하) */
+@media (max-width: 768px) {
+}
+
+/* mobile (기준: 375px 이하) */
+@media (max-width: 375px) {
+  .Button {
+    height: 34px;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+  .white {
+    font-size: 14px;
+  }
+  .Button.white:hover {
+    box-shadow: 0 0 0 1px var(--Brown-40) inset;
+    padding: 8px 12px;
+  }
+  .Button.white:active {
+    padding: 8px 12px;
+  }
 }

@@ -41,8 +41,6 @@ function QuestionModal({ isOpen, subject, onClose, onRefresh }) {
   const { id, name, imageSource } = subject || {};
   // console.log('modal subject::::', id, name, imageSource);
 
-  if (!isOpen) return null;
-
   const handleChange = (e) => setInputValue(e.target.value);
   const isDisabled = inputValue.length === 0;
 
@@ -68,6 +66,8 @@ function QuestionModal({ isOpen, subject, onClose, onRefresh }) {
       setIsLoading(false);
     }
   };
+
+  if (!isOpen) return null;
 
   return createPortal(
     isOpen && (

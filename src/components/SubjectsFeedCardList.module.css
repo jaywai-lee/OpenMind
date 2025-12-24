@@ -127,7 +127,8 @@
   gap: 6px;
   color: var(--Grayscale-40);
 }
-.reactionButton:disabled .icon {
+.reactionButton:disabled .icon,
+.reactionButton:disabled span {
   opacity: 0.6;
   cursor: not-allowed;
 }

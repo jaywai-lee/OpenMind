@@ -20,12 +20,7 @@ function SubjectsFeedCard({ subject, count, questions, onReact }) {
   return (
     <section className={styles.messageSection}>
       <div className={styles.messageContainer}>
-        <Messages
-          className={styles.messageImage}
-          width={24}
-          height={24}
-          fill="#542f1a"
-        />
+        <Messages className={styles.messageImage} />
         <span className={styles.messageText}>{count}개의 질문이 있습니다</span>
       </div>
       {questions.map((question) => (

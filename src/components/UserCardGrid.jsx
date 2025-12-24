@@ -1,3 +1,7 @@
 import styles from './UserCardGrid.module.css';
 
-<div className={cardGrid}></div>;
+function UserCardGrid() {
+  return <div className={cardGrid}></div>;
+}
+
+export default UserCardGrid;

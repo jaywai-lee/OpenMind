@@ -2,15 +2,15 @@ import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getSubject } from '../api/subjects';
 import { getQuestionsBySubject, postQuestionReaction } from '../api/questions';
+import storage from '../utils/storage';
 import FeedHeader from '../components/FeedHeader';
 import SubjectsFeedCard from '../components/SubjectsFeedCard';
-import FloatingButton from '../components/common/Button/FloatingButton';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import QuestionModal from '../components/common/modal/QuestionModal';
 import SubjectsFeedFooter from '../components/SubjectsFeedFooter';
 
 function SubjectsFeedPage() {
-  const { id: subjectId } = useParams();
+  const { id: feedId } = useParams();
   const [feed, setFeed] = useState({
     subject: null,
     questions: [],
@@ -21,15 +21,17 @@ function SubjectsFeedPage() {
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const hasMore = Boolean(feed.next);
+  const userId = storage.get('userId', null);
+  const isMyFeed = userId && feed.subject?.id === userId;
 
   const initFetch = useCallback(async () => {
-    if (!subjectId) return;
+    if (!feedId) return;
     try {
       setIsLoading(true);
       setError(null);
       const [subjectData, questionsData] = await Promise.all([
-        getSubject(subjectId),
-        getQuestionsBySubject(subjectId, {
+        getSubject(feedId),
+        getQuestionsBySubject(feedId, {
           limit: 4,
           offset: 0,
         }),
@@ -45,7 +47,7 @@ function SubjectsFeedPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [subjectId]);
+  }, [feedId]);
 
   useEffect(() => {
     setFeed({
@@ -114,7 +116,10 @@ function SubjectsFeedPage() {
       )}
       <div ref={loadMoreRef} style={{ height: 1 }} />
       {isLoading && <p style={{ textAlign: 'center' }}>불러오는 중...</p>}
-      <SubjectsFeedFooter onOpenModal={() => setIsModalOpen(true)} />
+      <SubjectsFeedFooter
+        isMyFeed={isMyFeed}
+        onOpenModal={() => setIsModalOpen(true)}
+      />
       <QuestionModal
         isOpen={isModalOpen}
         subject={feed.subject}

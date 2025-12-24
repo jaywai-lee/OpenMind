@@ -3,7 +3,7 @@ import FeedCardList from './FeedCardList';
 import Messages from '../assets/icons/messages.svg?react';
 import FloatingButton from './common/Button/FloatingButton';
 
-function FeedCard({ subject, count, questions, onReact }) {
+function FeedCard({ subject, count, questions, onReact, onSubmitAnswer }) {
   return (
     <div className={styles.FeedCardContainer}>
       {questions?.length > 0 && (
@@ -26,6 +26,7 @@ function FeedCard({ subject, count, questions, onReact }) {
             question={question}
             subject={subject}
             onReact={onReact}
+            onSubmitAnswer={onSubmitAnswer}
           />
         ))}
       </section>

@@ -2,10 +2,8 @@
 export async function copyLink(url) {
   try {
     await navigator.clipboard.writeText(url);
-    console.log('링크가 클립보드에 복사되었습니다.'); //Toast 추가 예정
     return true;
   } catch (err) {
-    console.log('클립보드 복사 실패', err);
     return false;
   }
 }

@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getSubject } from '../api/subjects';
 import { getQuestionsBySubject, postQuestionReaction } from '../api/questions';
+import { useToast } from '../context/ToastContext';
 import storage from '../utils/storage';
 import FeedHeader from '../components/FeedHeader';
 import SubjectsFeedCard from '../components/SubjectsFeedCard';
@@ -10,6 +11,7 @@ import QuestionModal from '../components/common/modal/QuestionModal';
 import SubjectsFeedFooter from '../components/SubjectsFeedFooter';
 
 function SubjectsFeedPage() {
+  const { toast } = useToast();
   const { id: feedId } = useParams();
   const [feed, setFeed] = useState({
     subject: null,
@@ -20,6 +22,7 @@ function SubjectsFeedPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const didSubmitRef = useRef(false);
   const hasMore = Boolean(feed.next);
   const userId = storage.get('userId', null);
   const isMyFeed = userId && feed.subject?.id === userId;
@@ -98,8 +101,24 @@ function SubjectsFeedPage() {
   };
 
   const handleRefresh = async () => {
+    didSubmitRef.current = true;
     await initFetch();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleOpenModal = () => {
+    didSubmitRef.current = false;
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    if (didSubmitRef.current) {
+      toast('질문이 등록되었습니다');
+    } else {
+      toast('질문 작성이 취소되었습니다');
+    }
+    didSubmitRef.current = false;
   };
 
   return (
@@ -116,14 +135,11 @@ function SubjectsFeedPage() {
       )}
       <div ref={loadMoreRef} style={{ height: 1 }} />
       {isLoading && <p style={{ textAlign: 'center' }}>불러오는 중...</p>}
-      <SubjectsFeedFooter
-        isMyFeed={isMyFeed}
-        onOpenModal={() => setIsModalOpen(true)}
-      />
+      <SubjectsFeedFooter isMyFeed={isMyFeed} onOpenModal={handleOpenModal} />
       <QuestionModal
         isOpen={isModalOpen}
         subject={feed.subject}
-        onClose={() => setIsModalOpen(false)}
+        onClose={handleCloseModal}
         onRefresh={handleRefresh}
       />
     </>

@@ -3,10 +3,19 @@ import linkShare from '../assets/icons/link-share.svg';
 import kakaoShare from '../assets/icons/kakao-share.svg';
 import facebookShare from '../assets/icons/facebook-share.svg';
 import { copyLink, shareKakao, shareFacebook } from '../utils/share';
+import { useToast } from '../context/ToastContext';
 
 function UserProfile({ subject }) {
+  const { toast } = useToast();
   const currentUrl = window.location.href;
-  const handleCopyLink = () => copyLink(currentUrl);
+  const handleCopyLink = async () => {
+    const success = await copyLink(currentUrl);
+    if (success) {
+      toast('URL이 복사되었습니다');
+    } else {
+      toast('URL 복사에 실패했습니다');
+    }
+  };
   const handleFacebookShare = () => shareFacebook(currentUrl);
   const handleKakaoShare = () => {
     shareKakao({

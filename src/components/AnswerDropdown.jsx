@@ -3,7 +3,12 @@ import Close from '../assets/icons/close.svg?react';
 import Edit from '../assets/icons/edit.svg?react';
 import Reject from '../assets/icons/rejection.svg?react';
 
-function AnswerDropdown({ onClick, answer }) {
+function AnswerDropdown({ id: questionId, onClick, answer, onSubmitAnswer }) {
+
+  const handleSubmitReject = () => {
+    onSubmitAnswer(questionId,'답변을 거절했습니다.', true);
+  };
+
   return (
     <div className={styles.dropdownContainer}>
       <div className={styles.dropdownGroup} onClick={onClick}>
@@ -17,7 +22,7 @@ function AnswerDropdown({ onClick, answer }) {
       { !answer && (
         <div className={styles.dropdownRejectGroup}>
           <Reject width={14} height={14} fill="#B93333"/>
-          <span className={styles.dropdownRejectText}>답변거절</span>
+          <span className={styles.dropdownRejectText} onClick={handleSubmitReject}>답변거절</span>
         </div>
       )}
     </div>

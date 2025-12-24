@@ -7,15 +7,16 @@ import AnswerDropdown from './AnswerDropdown';
 import FeedCardEdit from './FeedCardEdit';
 import { formatRelativeDate } from '../utils/formatRelativeDate';
 import Badge from '../../src/components/common/Badge/Badge';
+import storage from '../utils/storage';
 
-function FeedCardList({ subject, question, onReact }) {
+function FeedCardList({ subject, question, onReact, onSubmitAnswer }) {
   const { id, content, createdAt, like, dislike, answer } = question;
   const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
   const [ isEditing, setIsEditing ] = useState(false);
   const [ isEditDone, setIsEditDone ] = useState(false);
-  const subjectId = localStorage.getItem('subjectId');
+  const subjectId = storage.get('subjectId');
   const storageKey = `reactions-${subjectId}`;
-  const reactions = JSON.parse(localStorage.getItem(storageKey) || '{}');
+  const reactions = storage.get(storageKey) || '{}';
   const myReaction = reactions[id];
   const shouldShowBadgeStatus = !!answer || answer?.content || isEditDone;
   const isRejected = !!answer && answer.isRejected === true;
@@ -44,7 +45,7 @@ function FeedCardList({ subject, question, onReact }) {
           <div className={styles.dropdownGroup}>
             <More className={styles.moreImage} onClick={handleMoreClick}/>
             { isDropdownOpen && 
-              <AnswerDropdown onClick={handleEditClick} answer={answer}/> 
+            <AnswerDropdown onClick={handleEditClick} id={id} onSubmitAnswer={onSubmitAnswer} answer={answer}/> 
             }
           </div>
         )}
@@ -54,12 +55,14 @@ function FeedCardList({ subject, question, onReact }) {
         <span className={styles.questionText}>{content}</span>
       </div>
       <FeedCardEdit
+        id={id}
         answer={answer}
         createdAt={createdAt}
         subject={subject}
         onEditing={isEditing} 
         setOnEditing={setIsEditing} 
         setOnEditDone={setIsEditDone}
+        onSubmitAnswer={onSubmitAnswer}
       />
       <div className={styles.reactions}>
         <div className={styles.reactionGroup}>

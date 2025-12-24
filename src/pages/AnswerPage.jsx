@@ -5,6 +5,7 @@ import { getQuestionsBySubject, postQuestionReaction } from '../api/questions';
 import FeedCard from '../components/FeedCard';
 import FeedHeader from '../components/FeedHeader';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
+import { createAnswer, updateAnswer } from '../api/answers';
 
 function AnswerPage() {
   const { id: subjectId } = useParams();
@@ -56,7 +57,7 @@ function AnswerPage() {
       setNext(data.next);
       setHasMore(!!data.next);
     } catch (err) {
-      console.error('추가 질문 로딩 실패', err);
+      console.error('추가 질문 로딩 실패했습니다', err);
     } finally {
       setIsLoading(false);
     }
@@ -76,7 +77,37 @@ function AnswerPage() {
         prev.map((q) => (q.id === updatedQuestion.id ? updatedQuestion : q)),
       );
     } catch (err) {
-      console.error('리액션 처리 실패', err);
+      console.error('리액션 처리 실패했습니다', err);
+    }
+  };
+
+  const handleSubmitAnswer = async (questionId, content, isRejected = false) => {
+    const question = questions.find((q) => q.id === questionId);
+    if (!question) return;
+    try {
+      let resultAnswer;
+      if (question.answer===null) {
+        resultAnswer = await createAnswer(questionId, {
+          content,
+          isRejected,
+        });
+      } else {
+        resultAnswer = await updateAnswer(question.answer.id, {
+          content,
+          isRejected,
+        });
+      }
+      setQuestions((prev) =>
+        prev.map((q) =>
+          q.id === questionId ? { ...q, answer: resultAnswer } : q,
+        ),
+      );
+    } catch (err) {
+      if (question.answer === null) {
+        console.error('답변하기 생성 실패했습니다', err);
+      } else {
+        console.error('답변하기 수정 실패했습니다', err);
+      }
     }
   };
 
@@ -90,6 +121,7 @@ function AnswerPage() {
           count={count}
           questions={questions}
           onReact={handleReaction}
+          onSubmitAnswer={handleSubmitAnswer}
         />
       )}
       <div ref={loadMoreRef} style={{ height: 1 }} />

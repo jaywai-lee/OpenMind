@@ -97,12 +97,9 @@
 
 /* mobile (기준: 375px 이하) */
 @media (max-width: 375px) {
-  .Button {
+  .white {
     height: 34px;
     padding: 0 12px;
-    font-size: 14px;
-  }
-  .white {
     font-size: 14px;
   }
   .Button.white:hover {

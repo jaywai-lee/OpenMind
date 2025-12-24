@@ -1,44 +1,50 @@
 import { useState } from 'react';
 import styles from './DropDown.module.css';
+import ArrowDown from '../assets/icons/arrow-down.svg?react';
 
-function DropDown() {
-  // 1. 선택된 옵션의 상태 관리
+function DropDown({ onSelect }) {
   const [selectedOption, setSelectedOption] = useState('최신순');
-  // 2. 드롭다운 열림/닫힘 상태 관리
   const [isShowOptions, setIsShowOptions] = useState(false);
 
-  const options = ['이름순', '최신순'];
+  const options = [
+    { label: '이름순', value: 'name' },
+    { label: '최신순', value: 'createdAt' },
+  ];
 
-  // 드롭다운 열고 닫기 토글
   const handleToggleOptions = () => {
     setIsShowOptions((prev) => !prev);
   };
 
-  // 옵션 선택 시 실행될 함수
   const handleSelectOption = (option) => {
-    setSelectedOption(option); // 텍스트 변경
-    setIsShowOptions(false); // 선택 후 드롭다운 닫기
+    setSelectedOption(option.label);
+    setIsShowOptions(false);
+    onSelect?.(option.value);
   };
 
   return (
     <div className={styles.selectBox}>
-      {/* 라벨 클릭 시 토글 */}
-      <label onClick={handleToggleOptions} className={styles.label}>
-        {selectedOption}
-      </label>
-
-      {/* 옵션 목록 */}
-      <ul
-        style={{ display: isShowOptions ? 'block' : 'none' }}
-        className={styles.ul}
+      <button
+        type="button"
+        onClick={handleToggleOptions}
+        className={styles.label}
+        aria-haspopup="listbox"
+        aria-expanded={isShowOptions}
       >
-        {options.map((option, index) => (
+        {selectedOption}
+        <ArrowDown width={14} height={14} className={styles.downImage} />
+      </button>
+      <ul
+        className={`${styles.ul} ${isShowOptions ? styles.open : ''}`}
+        role="listbox"
+      >
+        {options.map((option) => (
           <li
-            key={index}
+            key={option.value}
             onClick={() => handleSelectOption(option)}
             className={styles.item}
+            role="option"
           >
-            {option}
+            {option.label}
           </li>
         ))}
       </ul>

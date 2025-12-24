@@ -4,19 +4,24 @@ import Badge from './Badge/Badge';
 import Button from './Button/Button';
 import FloatingButton from './Button/FloatingButton';
 import Modal from './modal/QuestionModal';
-import ConfirmModal from './modal/ConfirmModal';
 import ArrowRightLineDisabled from '../../assets/icons/arrow-right-line-disabled.svg?react';
+import { useToast } from '../../context/ToastContext';
 
 function _ComponentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
-  const handleConfirm = () => {
-    console.log('확인 눌렀음');
-  };
+  const { toast } = useToast();
   return (
     <div className={styles.container}>
-      <Badge status="done" /> {/* 답변완료 뱃지 표시 */}
-      <Badge status="waiting" /> {/* 미답변 뱃지 표시 */}
+      <Badge status="done" />
+      <Badge status="waiting" />
+      <Button
+        theme="white"
+        size="small"
+        isDisabled={false}
+        onClick={() => toast('URL이 복사되었습니다 아아아아아아아아아아')}
+      >
+        토스트
+      </Button>
       <div>
         <Button theme="dark" isDisabled={false}>
           aaaaa
@@ -28,9 +33,6 @@ function _ComponentPage() {
           aaaaa
         </Button>
         <Button theme="white" size="small" isDisabled={false}>
-          aaaaa
-        </Button>
-        <Button theme="white" size="small" hasArrow={false} isDisabled={false}>
           aaaaa
         </Button>
         <ArrowRightLineDisabled width={50} height={50} fill="#c7bbb5" />
@@ -48,21 +50,6 @@ function _ComponentPage() {
           </FloatingButton>
         </div>
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-        <div className={styles.floatingSmall}>
-          <FloatingButton
-            size="small"
-            onClick={() => setIsConfirmModalOpen(true)}
-          >
-            확인취소
-          </FloatingButton>
-        </div>
-        <ConfirmModal
-          isOpen={isConfirmModalOpen}
-          message="글을 삭제하시겠습니까?"
-          subMessage="삭제하시면 다시 복구시킬 수 없습니다"
-          onClose={() => setIsConfirmModalOpen(false)}
-          onConfirm={handleConfirm}
-        />
       </div>
     </div>
   );

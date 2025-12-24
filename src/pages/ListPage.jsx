@@ -34,6 +34,7 @@ function ListPage() {
       <ListHeader />
       <ListTitle />
       <DropDown onSelect={setOrder} />
+
       <UserCardGrid>
         {sortedItems.map((user) => (
           <UserCard key={user.id} user={user} />

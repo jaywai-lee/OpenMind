@@ -1,10 +1,12 @@
 import styles from './SubjectsFeedFooter.module.css';
 import FloatingButton from './common/Button/FloatingButton';
+import { useToast } from '../context/ToastContext';
 
 function SubjectsFeedFooter({ isMyFeed, onOpenModal }) {
+  const { toast } = useToast();
   const handleClick = () => {
     if (isMyFeed) {
-      alert('내 피드에는 질문을 작성할 수 없습니다.');
+      toast('내 피드에는 질문을 작성할 수 없습니다');
       return;
     }
     onOpenModal();

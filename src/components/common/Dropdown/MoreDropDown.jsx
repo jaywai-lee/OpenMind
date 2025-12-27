@@ -7,13 +7,13 @@ import Rejection from '../../../assets/icons/rejection.svg?react';
 /**
  * 공통 - 드롭다운 (더보기 토글)
  * 사용법
- *  <MeatballMenu
+ *  <MoreDropDown
  *    onEdit={ }
  *    onDelete={ }
  *    onReject={ }
  *  >
  *    <div className={}>...</div>  <-- 클릭되는 요소를 div 태그로 감싸고 스타일 제어하기
- *  </MeatballMenu>
+ *  </MoreDropDown>
  *
  * children: 자식요소를 가져옴
  * onEdit: 수정하기 클릭시 함수 호출 (function)
@@ -22,7 +22,7 @@ import Rejection from '../../../assets/icons/rejection.svg?react';
  * @props { children, onEdit, onDelete, onReject }
  * @returns
  */
-function MeatballMenu({ children, onEdit, onDelete, onReject }) {
+function MoreDropDown({ children, onEdit, onDelete, onReject }) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -73,4 +73,4 @@ function MeatballMenu({ children, onEdit, onDelete, onReject }) {
   );
 }
 
-export default MeatballMenu;
+export default MoreDropDown;

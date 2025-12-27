@@ -7,6 +7,7 @@ import Modal from './modal/QuestionModal';
 import ConfirmModal from './modal/ConfirmModal';
 import ArrowRightLineDisabled from '../../assets/icons/arrow-right-line-disabled.svg?react';
 import MoreDropDown from './Dropdown/MoreDropDown';
+import Reaction from './Reaction/Reaction';
 
 function _ComponentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,6 +50,13 @@ function _ComponentPage() {
           </FloatingButton>
         </div>
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        <MoreDropDown
+          onEdit={() => console.log('수정')}
+          onDelete={() => console.log('삭제')}
+          onReject={() => console.log('거절')}
+        >
+          <div>...</div>
+        </MoreDropDown>
         <div className={styles.floatingSmall}>
           <FloatingButton
             size="small"
@@ -64,13 +72,8 @@ function _ComponentPage() {
           onClose={() => setIsConfirmModalOpen(false)}
           onConfirm={handleConfirm}
         />
-        <MoreDropDown
-          onEdit={() => console.log('수정')}
-          onDelete={() => console.log('삭제')}
-          onReject={() => console.log('거절')}
-        >
-          <div>...</div>
-        </MoreDropDown>
+        <div className={styles.reaction}></div>
+        <Reaction></Reaction>
       </div>
     </div>
   );

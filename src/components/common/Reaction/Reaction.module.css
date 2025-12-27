@@ -1,0 +1,15 @@
+.reactionContainer {
+  width: 168px;
+  height: 18px;
+  display: flex;
+  gap: 32px;
+}
+.reactionGroup {
+  /* width: 59px; */
+  height: 18px;
+  font-weight: var(--font-weight-medium);
+  font-size: 14px;
+  line-height: 18px;
+  display: flex;
+  gap: 6px;
+}

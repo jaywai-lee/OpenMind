@@ -1,0 +1,51 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: 60px 0;
+}
+
+/* 버튼 기본 스타일 */
+.pagination button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* 숫자 */
+.page {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  color: var(--Grayscale-40);
+  line-height: 1;
+}
+
+/* 활성 페이지 */
+.active {
+  color: var(--Brown-40);
+  font-weight: var(--font-weight-regular);
+}
+
+/* 화살표 */
+.arrow {
+  font-size: var(--font-size-xl);
+  color: var(--Grayscale-40);
+  line-height: 1;
+}
+
+/* 비활성화 */
+.pagination button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.page:hover {
+  color: var(--Brown-40);
+}
+
+.arrow:hover:not(:disabled) {
+  color: var(--Brown-40);
+}

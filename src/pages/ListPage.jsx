@@ -5,22 +5,38 @@ import DropDown from '../components/DropDown';
 import UserCardGrid from '../components/UserCardGrid';
 import UserCard from '../components/UserCard';
 import { getSubjectList } from '../api/subjects';
+import Pagination from '../components/Pagination';
 
 function ListPage() {
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState('createdAt');
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const pageSize = 8;
+  const [count, setCount] = useState(0);
+
+  const offset = (currentPage - 1) * pageSize;
+  const totalPages = Math.ceil(count / pageSize);
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   useEffect(() => {
     async function loadData() {
       try {
-        const response = await getSubjectList();
+        // ⭐ offset / limit 적용
+        const response = await getSubjectList({
+          offset,
+          limit: pageSize,
+        });
+
         setItems(response.results);
+        setCount(response.count);
       } catch (error) {
         console.error(error);
       }
     }
+
     loadData();
-  }, []);
+  }, [offset]);
 
   const sortedItems = [...items].sort((a, b) => {
     if (order === 'name') {
@@ -40,6 +56,12 @@ function ListPage() {
           <UserCard key={user.id} user={user} />
         ))}
       </UserCardGrid>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
     </>
   );
 }

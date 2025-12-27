@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './DropDown.module.css';
+import styles from './DropDownMenu.module.css';
 import ArrowUp from '../../../assets/icons/arrow-up.svg?react';
 
 /**
@@ -8,7 +8,7 @@ import ArrowUp from '../../../assets/icons/arrow-up.svg?react';
  * @param { onChangeSort }
  * @returns
  */
-function DropDown({ onChangeSort }) {
+function DropDownMenu({ onChangeSort }) {
   const [sortType, setSortType] = useState('최신순');
   const [isOpen, setIsOpen] = useState(false);
   const options = [
@@ -54,4 +54,4 @@ function DropDown({ onChangeSort }) {
     </div>
   );
 }
-export default DropDown;
+export default DropDownMenu;

@@ -11,7 +11,7 @@ import Reaction from './Reaction/Reaction';
 import storage from '../../utils/storage';
 import useReactionStorage from '../../hooks/useReactionStorage';
 import Pagenation from './Page/PageNation';
-import DropDown from './Dropdown/DropDown';
+import DropDownMenu from './Dropdown/DropDownMenu';
 
 function _ComponentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -133,7 +133,7 @@ function _ComponentPage() {
           onChangepage={setCurrentPage}
         ></Pagenation>
       </div>
-      <DropDown onChangeSort={handleOnChangeSort} />
+      <DropDownMenu onChangeSort={handleOnChangeSort} />
     </div>
   );
 }

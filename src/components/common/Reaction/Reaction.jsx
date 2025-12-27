@@ -16,7 +16,7 @@ import { useState } from 'react';
  * isReactionDisabled: true/false (Boolean) 비활성화 여부
  * activeMyReactionType: 'like'/'dislike' (string) 사용자가 이미 누른 버튼의 타입
  * onReact: (function) 눌렀을때 전달할 함수 -> 인자로 type('like'/'dislike'(string)) 전달
- * @param { question, isReactionDisabled, activeMyReactionType, onReact}
+ * @param { question, isReactionDisabled, activeMyReactionType, onReact }
  * @returns
  */
 function Reaction({

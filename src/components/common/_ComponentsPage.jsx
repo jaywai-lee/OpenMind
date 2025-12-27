@@ -10,11 +10,17 @@ import MoreDropDown from './Dropdown/MoreDropDown';
 import Reaction from './Reaction/Reaction';
 import storage from '../../utils/storage';
 import useReactionStorage from '../../hooks/useReactionStorage';
+import Usercard from './UserCard/UserCard';
 
 function _ComponentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
-
+  const user = {
+    id: 12345,
+    name: '오오',
+    imageSource: 'ss.svg',
+    questionCount: 2,
+  };
   const subject = {
     id: 12637, // 냥냥
   };
@@ -108,6 +114,9 @@ function _ComponentPage() {
           activeMyReactionType={myReaction}
           onReact={handleOnReact}
         ></Reaction>
+      </div>
+      <div>
+        <Usercard user={user}></Usercard>
       </div>
     </div>
   );

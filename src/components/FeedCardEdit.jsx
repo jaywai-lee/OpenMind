@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { formatRelativeDate } from '../utils/formatRelativeDate';
 import styles from './FeedCardEdit.module.css';
 import Button from './common/Button/Button';
+import { Toast } from './common/Toast/Toast';
+import { useToast } from '../context/ToastContext';
 
 function FeedCardEdit({ id: questionId, subject, answer, onEditing, setOnEditing, setOnEditDone, onSubmitAnswer}) {
   const [ text, setText ] = useState(answer?.content || '');
@@ -16,11 +18,18 @@ function FeedCardEdit({ id: questionId, subject, answer, onEditing, setOnEditing
     setText(e.target.value);
   };
 
+  const { toast } = useToast();
+
   const handleSubmit = async () => {
     if (text.trim().length === 0) return;
     await onSubmitAnswer(questionId, text);
     setOnEditing(false);
     setOnEditDone(true);
+    toast(
+      answer === null
+        ? '답변이 생성되었습니다'
+        : '답변이 수정되었습니다'
+    );
   };
 
   return (     

@@ -1,5 +1,5 @@
 import styles from './FeedHeader.module.css';
-import logo from '../assets/icons/logo.svg';
+import Logo from '../assets/icons/logo.svg?react';
 import UserProfile from './UserProfile';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ function FeedHeader({ subject }) {
     <div className={styles.group}>
       <header className={styles.header}>
         <Link to="/" aria-label="메인 페이지">
-          <img className={styles.logo} src={logo} alt="logo" />
+          <Logo className={styles.logo} />
         </Link>
       </header>
       {subject && <UserProfile subject={subject} />}

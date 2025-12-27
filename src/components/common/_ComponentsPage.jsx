@@ -10,7 +10,6 @@ import MoreDropDown from './Dropdown/MoreDropDown';
 import Reaction from './Reaction/Reaction';
 import storage from '../../utils/storage';
 import useReactionStorage from '../../hooks/useReactionStorage';
-import Usercard from './UserCard/UserCard';
 
 function _ComponentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -116,7 +115,6 @@ function _ComponentPage() {
           onReact={handleOnReact}
         ></Reaction>
       </div>
-      <div>{/* <Usercard user={user}></Usercard> */}</div>
     </div>
   );
 }

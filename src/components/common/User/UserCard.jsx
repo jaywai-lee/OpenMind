@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styles from './_UserCard.module.css';
+import styles from './UserCard.module.css';
 import messageImg from '../../../assets/icons/messages.svg';
 
 /**
@@ -8,7 +8,7 @@ import messageImg from '../../../assets/icons/messages.svg';
  * @param { user }
  * @returns
  */
-function _UserCard({ user = {} }) {
+function UserCard({ user = {} }) {
   const { id, name, imageSource, questionCount } = user;
   if (!id) return null;
   return (
@@ -35,4 +35,4 @@ function _UserCard({ user = {} }) {
   );
 }
 
-export default _UserCard;
+export default UserCard;

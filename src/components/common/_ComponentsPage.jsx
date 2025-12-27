@@ -55,6 +55,10 @@ function _ComponentPage() {
     console.log('확인 눌렀음');
   };
 
+  const handleOnChangeSort = (value) => {
+    console.log('드롭다운클릭:::', value);
+  };
+
   const onChangepage = () => {};
   return (
     <div className={styles.container}>
@@ -129,7 +133,7 @@ function _ComponentPage() {
           onChangepage={setCurrentPage}
         ></Pagenation>
       </div>
-      <DropDown />
+      <DropDown onChangeSort={handleOnChangeSort} />
     </div>
   );
 }

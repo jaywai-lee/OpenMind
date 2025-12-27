@@ -10,7 +10,8 @@ import MoreDropDown from './Dropdown/MoreDropDown';
 import Reaction from './Reaction/Reaction';
 import storage from '../../utils/storage';
 import useReactionStorage from '../../hooks/useReactionStorage';
-import Pagenation from './Page/Pagenation';
+import Pagenation from './Page/PageNation';
+import DropDown from './Dropdown/DropDown';
 
 function _ComponentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -128,6 +129,7 @@ function _ComponentPage() {
           onChangepage={setCurrentPage}
         ></Pagenation>
       </div>
+      <DropDown />
     </div>
   );
 }

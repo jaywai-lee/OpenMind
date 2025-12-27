@@ -9,7 +9,7 @@ import { formatRelativeDate } from '../utils/formatRelativeDate';
 import Badge from '../../src/components/common/Badge/Badge';
 import storage from '../utils/storage';
 
-function FeedCardList({ subject, question, onReact, onSubmitAnswer }) {
+function FeedCardList({ subject, question, onReact, onSubmitAnswer, onDeleteFeedCard  }) {
   const { id, content, createdAt, like, dislike, answer } = question;
   const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
   const [ isEditing, setIsEditing ] = useState(false);
@@ -45,7 +45,7 @@ function FeedCardList({ subject, question, onReact, onSubmitAnswer }) {
           <div className={styles.dropdownGroup}>
             <More className={styles.moreImage} onClick={handleMoreClick}/>
             { isDropdownOpen && 
-            <AnswerDropdown onClick={handleEditClick} id={id} onSubmitAnswer={onSubmitAnswer} answer={answer}/> 
+            <AnswerDropdown onClick={handleEditClick} id={id} onSubmitAnswer={onSubmitAnswer} answer={answer} onDeleteFeedCard ={onDeleteFeedCard }/> 
             }
           </div>
         )}

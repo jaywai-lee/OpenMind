@@ -8,7 +8,7 @@ import messageImg from '../../../assets/icons/messages.svg';
  * @param { user }
  * @returns
  */
-function UserCard({ user }) {
+function UserCard({ user = {} }) {
   const { id, name, imageSource, questionCount } = user;
   if (!id) return null;
   return (

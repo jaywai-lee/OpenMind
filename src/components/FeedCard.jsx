@@ -3,11 +3,11 @@ import FeedCardList from './FeedCardList';
 import Messages from '../assets/icons/messages.svg?react';
 import FloatingButton from './common/Button/FloatingButton';
 
-function FeedCard({ subject, count, questions, onReact, onSubmitAnswer }) {
+function FeedCard({ subject, count, questions, onReact, onSubmitAnswer, onDeleteFeedCard , onDeleteAll }) {
   return (
     <div className={styles.FeedCardContainer}>
       {questions?.length > 0 && (
-        <div className={styles.deleteButton}>
+        <div className={styles.deleteButton} onClick={onDeleteAll}>
           <FloatingButton theme="dark" size="small">
             삭제하기
           </FloatingButton>
@@ -27,6 +27,7 @@ function FeedCard({ subject, count, questions, onReact, onSubmitAnswer }) {
             subject={subject}
             onReact={onReact}
             onSubmitAnswer={onSubmitAnswer}
+            onDeleteFeedCard ={onDeleteFeedCard }
           />
         ))}
       </section>

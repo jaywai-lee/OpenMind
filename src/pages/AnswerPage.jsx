@@ -5,7 +5,7 @@ import { getQuestionsBySubject, postQuestionReaction } from '../api/questions';
 import FeedCard from '../components/FeedCard';
 import FeedHeader from '../components/FeedHeader';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
-import { createAnswer, updateAnswer } from '../api/answers';
+import { createAnswer, deleteFeedCard, updateAnswer } from '../api/answers';
 
 function AnswerPage() {
   const { id: subjectId } = useParams();
@@ -111,6 +111,30 @@ function AnswerPage() {
     }
   };
 
+  const handleDeleteFeedCard = async (questionId) => {
+    try {
+      await deleteFeedCard(questionId);
+      setQuestions((prev) =>
+        prev.filter((q) => q.id !== questionId)
+      );
+      setCount((prev) => prev - 1);
+    } catch (err) {
+      console.error('개별 카드 피드 삭제 실패했습니다', err);
+    }
+  };
+
+  const handleDeleteAll = async () => {
+  try {
+      await Promise.all(
+        questions.map((q) => deleteFeedCard(q.id))
+      );
+      setQuestions([]);
+      setCount(0);
+    } catch (err) {
+      console.error('전체 카드 삭제 실패했습니다', err);
+    }
+  };
+
   return (
     <>
       <FeedHeader subject={subject} />
@@ -122,6 +146,8 @@ function AnswerPage() {
           questions={questions}
           onReact={handleReaction}
           onSubmitAnswer={handleSubmitAnswer}
+          onDeleteFeedCard ={handleDeleteFeedCard }
+          onDeleteAll={handleDeleteAll}
         />
       )}
       <div ref={loadMoreRef} style={{ height: 1 }} />

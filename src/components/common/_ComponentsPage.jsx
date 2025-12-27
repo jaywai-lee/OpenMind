@@ -10,10 +10,13 @@ import MoreDropDown from './Dropdown/MoreDropDown';
 import Reaction from './Reaction/Reaction';
 import storage from '../../utils/storage';
 import useReactionStorage from '../../hooks/useReactionStorage';
+import Pagenation from './Page/Pagenation';
 
 function _ComponentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+
   const user = {
     id: 12345,
     name: '오오',
@@ -50,6 +53,8 @@ function _ComponentPage() {
   const handleConfirm = () => {
     console.log('확인 눌렀음');
   };
+
+  const onChangepage = () => {};
   return (
     <div className={styles.container}>
       <Badge status="done" />
@@ -114,6 +119,14 @@ function _ComponentPage() {
           activeMyReactionType={myReaction}
           onReact={handleOnReact}
         ></Reaction>
+      </div>
+      <div>
+        <Pagenation
+          currentPage={1}
+          totalListCount={222}
+          pageLimit={8}
+          onChangepage={setCurrentPage}
+        ></Pagenation>
       </div>
     </div>
   );

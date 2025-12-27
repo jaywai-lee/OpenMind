@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 40px;
+  align-items: center;
 }
 
 .group a {
@@ -19,10 +20,12 @@
 .linkButton {
   width: 161px;
   height: 46px;
+  display: flex;
+  align-items: center;
 }
 
-.button {
+/* .button {
   background: var(--Brown-10);
   border-radius: 8px;
   border: 1px solid var(--Brown-40);
-}
+} */

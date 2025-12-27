@@ -14,6 +14,12 @@ import useReactionStorage from '../../hooks/useReactionStorage';
 function _ComponentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const user = {
+    id: 12345,
+    name: '오오',
+    imageSource: 'ss.svg',
+    questionCount: 2,
+  };
 
   const subject = {
     id: 12637, // 냥냥

@@ -1,7 +1,7 @@
 import styles from './UserProfile.module.css';
-import linkShare from '../assets/icons/link-share.svg';
-import kakaoShare from '../assets/icons/kakao-share.svg';
-import facebookShare from '../assets/icons/facebook-share.svg';
+import LinkShare from '../assets/icons/link-share.svg?react';
+import KakaoShare from '../assets/icons/kakao-share.svg?react';
+import FacebookShare from '../assets/icons/facebook-share.svg?react';
 import { copyLink, shareKakao, shareFacebook } from '../utils/share';
 import { useToast } from '../context/ToastContext';
 
@@ -36,21 +36,21 @@ function UserProfile({ subject }) {
       <p className={styles.nickname}>{subject.name}</p>
       <div className={styles.share}>
         <button type="button" onClick={handleCopyLink} aria-label="링크 공유">
-          <img src={linkShare} alt="url share" />
+          <LinkShare />
         </button>
         <button
           type="button"
           onClick={handleKakaoShare}
           aria-label="카카오톡 공유"
         >
-          <img src={kakaoShare} alt="kakao share" />
+          <KakaoShare />
         </button>
         <button
           type="button"
           onClick={handleFacebookShare}
           aria-label="페이스북 공유"
         >
-          <img src={facebookShare} alt="facebook share" />
+          <FacebookShare />
         </button>
       </div>
     </section>

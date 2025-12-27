@@ -15,7 +15,7 @@ function SubjectsFeedFooter({ isMyFeed, onOpenModal }) {
     <div className={styles.floatingGroup}>
       <FloatingButton onClick={handleClick}>
         <span>질문 작성</span>
-        <span className={styles.desktopOnly}>하기</span>
+        <span className={styles.hideOnMobile}>하기</span>
       </FloatingButton>
     </div>
   );

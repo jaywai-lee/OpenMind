@@ -21,6 +21,7 @@ function _ComponentPage() {
     imageSource: 'ss.svg',
     questionCount: 2,
   };
+
   const subject = {
     id: 12637, // 냥냥
   };

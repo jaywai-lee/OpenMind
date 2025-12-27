@@ -24,11 +24,10 @@ function DropDown({ onChangeSort }) {
     if (onChangeSort) onChangeSort(option.value);
   };
 
-  const isActive = isOpen ? styles.active : '';
   return (
     <div className={styles.container}>
       <button
-        className={`${styles.selectButton} ${isActive}`}
+        className={`${styles.selectButton} ${isOpen ? styles.active : ''}`}
         onClick={toggleShow}
       >
         {sortType}

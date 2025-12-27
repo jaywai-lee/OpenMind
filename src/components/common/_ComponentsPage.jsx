@@ -54,7 +54,6 @@ function _ComponentPage() {
     console.log('확인 눌렀음');
   };
 
-  const onChangepage = () => {};
   return (
     <div className={styles.container}>
       <Badge status="done" />

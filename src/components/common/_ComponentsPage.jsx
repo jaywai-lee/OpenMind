@@ -10,7 +10,7 @@ import MoreDropDown from './Dropdown/MoreDropDown';
 import Reaction from './Reaction/Reaction';
 import storage from '../../utils/storage';
 import useReactionStorage from '../../hooks/useReactionStorage';
-import Pagenation from './Page/PageNation';
+import Pagenation from './Page/Pagenation';
 
 function _ComponentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);

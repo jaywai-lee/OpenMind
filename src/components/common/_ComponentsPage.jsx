@@ -8,17 +8,46 @@ import ConfirmModal from './modal/ConfirmModal';
 import ArrowRightLineDisabled from '../../assets/icons/arrow-right-line-disabled.svg?react';
 import MoreDropDown from './Dropdown/MoreDropDown';
 import Reaction from './Reaction/Reaction';
+import storage from '../../utils/storage';
+import useReactionStorage from '../../hooks/useReactionStorage';
 
 function _ComponentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+
+  const subject = {
+    id: 12637, // 냥냥
+  };
+
+  const question = {
+    id: 1234,
+    like: 11,
+    dislike: 0,
+  };
+
+  const { id, like, dislike } = question;
+  const userId = storage.get('userId', null);
+  const { enabled, getMyReaction, setReaction } = useReactionStorage(
+    userId,
+    subject.id,
+  );
+
+  const myReaction = getMyReaction(id);
+  const isReactionDisabled = !enabled || Boolean(myReaction);
+
+  const handleOnReact = (type) => {
+    // onReact(id, type);
+    // setReaction(id, type);
+    console.log('handleReact:::::', type);
+  };
+
   const handleConfirm = () => {
     console.log('확인 눌렀음');
   };
   return (
     <div className={styles.container}>
-      <Badge status="done" /> {/* 답변완료 뱃지 표시 */}
-      <Badge status="waiting" /> {/* 미답변 뱃지 표시 */}
+      <Badge status="done" />
+      <Badge status="waiting" />
       <div>
         <Button theme="dark" isDisabled={false}>
           aaaaa
@@ -73,7 +102,12 @@ function _ComponentPage() {
           onConfirm={handleConfirm}
         />
         <div className={styles.reaction}></div>
-        <Reaction></Reaction>
+        <Reaction
+          question={question}
+          isReactionDisabled={isReactionDisabled}
+          activeMyReactionType={myReaction}
+          onReact={handleOnReact}
+        ></Reaction>
       </div>
     </div>
   );

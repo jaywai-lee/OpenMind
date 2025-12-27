@@ -115,9 +115,7 @@ function _ComponentPage() {
           onReact={handleOnReact}
         ></Reaction>
       </div>
-      <div>
-        <Usercard user={user}></Usercard>
-      </div>
+      <div>{/* <Usercard user={user}></Usercard> */}</div>
     </div>
   );
 }

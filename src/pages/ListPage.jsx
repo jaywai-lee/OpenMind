@@ -3,7 +3,7 @@ import ListHeader from '../components/ListHeader';
 import ListTitle from '../components/ListTitle';
 import DropDown from '../components/DropDown';
 import UserCardGrid from '../components/UserCardGrid';
-import UserCard from '../components/UserCard';
+import UserCard from '../components/common/User/UserCard';
 import { getSubjectList } from '../api/subjects';
 import Pagination from '../components/Pagination';
 

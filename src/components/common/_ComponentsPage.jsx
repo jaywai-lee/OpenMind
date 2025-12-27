@@ -11,7 +11,7 @@ import Reaction from './Reaction/Reaction';
 import storage from '../../utils/storage';
 import useReactionStorage from '../../hooks/useReactionStorage';
 import Pagenation from './Page/PageNation';
-import DropDownMenu from './Dropdown/DropDownMenu';
+// import DropDownMenu from './Dropdown/DropDownMenu';
 
 function _ComponentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,9 +55,9 @@ function _ComponentPage() {
     console.log('확인 눌렀음');
   };
 
-  const handleOnChangeSort = (value) => {
-    console.log('드롭다운클릭:::', value);
-  };
+  // const handleOnChangeSort = (value) => {
+  //   console.log('드롭다운클릭:::', value);
+  // };
 
   const onChangepage = () => {};
   return (
@@ -133,7 +133,7 @@ function _ComponentPage() {
           onChangepage={setCurrentPage}
         ></Pagenation>
       </div>
-      <DropDownMenu onChangeSort={handleOnChangeSort} />
+      {/* <DropDownMenu onChangeSort={handleOnChangeSort} /> */}
     </div>
   );
 }

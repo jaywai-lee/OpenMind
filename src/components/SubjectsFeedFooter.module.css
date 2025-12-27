@@ -17,7 +17,7 @@
     width: 123px;
   }
 
-  .desktopOnly {
+  .hideOnMobile {
     display: none;
   }
 }

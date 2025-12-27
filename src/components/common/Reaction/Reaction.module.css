@@ -1,0 +1,25 @@
+.reactionContainer {
+  height: 18px;
+  display: flex;
+  gap: 32px;
+}
+.reactionButton {
+  font-weight: var(--font-weight-medium);
+  font-size: 14px;
+  line-height: 18px;
+  display: flex;
+  gap: 6px;
+  color: var(--Grayscale-40);
+}
+.reactionButton.active {
+  color: var(--Blue-50);
+}
+.active .reactIcon {
+  fill: var(--Blue-50);
+}
+
+.reactionButton:disabled .reactIcon,
+.reactionButton:disabled span {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

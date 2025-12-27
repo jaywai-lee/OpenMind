@@ -6,12 +6,14 @@
   border: 1px solid var(--Brown-20);
   background: var(--Brown-10);
 }
+
 .emptyContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 16px 0 16px 0;
+  margin: 16px 0;
 }
+
 .messageGroup {
   display: flex;
   align-items: center;
@@ -29,6 +31,7 @@
   height: 154px;
   margin-top: 70px;
 }
+
 .messageSection {
   width: 716px;
   margin: 54px auto 136px;
@@ -36,13 +39,15 @@
   border: 1px solid var(--Brown-30);
   background: var(--Brown-10);
 }
+
 .messageContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 16px 0 16px 0;
+  margin: 16px 0;
   gap: 8px;
 }
+
 .messageText {
   font-family: 'Actor';
   color: var(--Brown-40);

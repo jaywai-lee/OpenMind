@@ -31,7 +31,7 @@
   justify-content: center;
   margin-top: 25px;
 }
-h3 {
+.bangGroup h3 {
   margin-top: 25px;
 }
 h3 p {
@@ -42,6 +42,7 @@ h4 {
   margin-top: 20px;
 }
 .confirmContent {
+  margin-top: 25px;
   margin-right: 8px;
 }
 .confirmClose {

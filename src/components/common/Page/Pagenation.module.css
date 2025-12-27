@@ -1,0 +1,31 @@
+.pagenationContainer {
+  text-align: center;
+}
+.pageButtons {
+  width: 40px;
+  height: 40px;
+  font-family: Actor;
+  font-weight: var(--font-weight-regular);
+  font-size: 20px;
+  line-height: 25px;
+  color: var(--Grayscale-40);
+}
+.active {
+  color: var(--Brown-40);
+}
+.pageButtons:disabled {
+  opacity: 0.3;
+}
+/* tablet 일 (기준: 768px 이하) */
+@media (max-width: 768px) {
+}
+
+/* mobile (기준: 375px 이하) */
+@media (max-width: 375px) {
+  .pageButtons {
+    font-family: Actor;
+    font-weight: var(--font-weight-regular);
+    font-size: 16px;
+    line-height: 25px;
+  }
+}

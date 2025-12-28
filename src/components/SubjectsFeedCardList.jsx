@@ -2,9 +2,8 @@ import styles from './SubjectsFeedCardList.module.css';
 import { formatRelativeDate } from '../utils/formatRelativeDate';
 import Badge from '../../src/components/common/Badge/Badge';
 import storage from '../utils/storage';
-import ThumbsUp from '../assets/icons/thumbs-up.svg?react';
-import ThumbsDown from '../assets/icons/thumbs-down.svg?react';
 import useReactionStorage from '../hooks/useReactionStorage';
+import Reaction from '../components/common/Reaction/Reaction';
 
 function SubjectsFeedCardList({ subject, question, onReact }) {
   const { id, content, createdAt, like, dislike, answer } = question;
@@ -71,24 +70,12 @@ function SubjectsFeedCardList({ subject, question, onReact }) {
 
       <div className={styles.reactions}>
         <div className={styles.reactionGroup}>
-          <button
-            className={`${styles.reactionButton} ${myReaction === 'like' ? styles.active : ''}`}
-            type="button"
-            disabled={isReactionDisabled}
-            onClick={() => handleReactionClick('like')}
-          >
-            <ThumbsUp className={styles.icon} />
-            <span>좋아요 {like}</span>
-          </button>
-          <button
-            className={`${styles.reactionButton} ${myReaction === 'dislike' ? styles.active : ''}`}
-            type="button"
-            disabled={isReactionDisabled}
-            onClick={() => handleReactionClick('dislike')}
-          >
-            <ThumbsDown className={styles.icon} />
-            <span>싫어요 {dislike}</span>
-          </button>
+          <Reaction
+            question={question}
+            isReactionDisabled={isReactionDisabled}
+            activeMyReactionType={myReaction}
+            onReact={handleReactionClick}
+          />
         </div>
       </div>
     </section>

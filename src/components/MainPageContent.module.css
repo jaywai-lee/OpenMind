@@ -65,3 +65,55 @@
   width: 100%;
   margin: 16px 0 0;
 }
+
+/*  */
+.mainHeaderGroup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.questionGoBtnContainer {
+  width: 100%;
+  height: 160px;
+  display: flex;
+  justify-content: right;
+  background: var(--Grayscale-20);
+}
+.questionGoBtnGroup {
+  min-width: 161px;
+  height: 46px;
+  margin: 45px 130px;
+}
+
+/* tablet 일 (기준: 768px 이하) */
+@media (max-width: 768px) {
+}
+
+/* mobile (기준: 375px 이하) */
+@media (max-width: 375px) {
+  .mainInputContainer {
+    /* max-width: 305px; */
+    margin: 0px 35px;
+  }
+  .mainSection {
+    margin: 0 35px;
+  }
+  .mainLogoGroup {
+    max-width: 248px;
+    height: 98px;
+    margin-top: 80px;
+  }
+  .mainHeaderGroup {
+    flex-direction: column-reverse;
+    /* margin: 0 auto; */
+    align-items: center;
+  }
+
+  /*  */
+  /* .questionGoBtnGroup {
+    min-width: 123px;
+    height: 34px;
+    margin: 45px 130px;
+  } */
+}

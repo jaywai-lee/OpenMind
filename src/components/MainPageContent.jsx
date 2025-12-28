@@ -5,6 +5,7 @@ import styles from './MainPageContent.module.css';
 import { createSubject } from '../api/subjects';
 import { Link, useNavigate } from 'react-router-dom';
 import storage from '../utils/storage';
+import MainPageHeader from './MainPageHeader';
 
 function MainPageContent() {
   const [inputValue, setInputValue] = useState('');
@@ -29,13 +30,23 @@ function MainPageContent() {
   };
 
   return (
-    <section>
+    <section className={styles.mainSection}>
       <div className={styles.mainContainer}>
-        <h1>
-          <Link to="/">
-            <img src={logoImage} alt="로고이미지" />
-          </Link>
-        </h1>
+        <div className={styles.mainHeaderGroup}>
+          {/* <div className={styles.questionGoBtnContainer}>
+            <header className={`${styles.questionGoBtnGroup}`}>
+              <Link to="/list">
+                <Button theme="white">질문하러 가기</Button>
+              </Link>
+            </header>
+          </div> */}
+          <MainPageHeader />
+          <h1 className={styles.mainLogoGroup}>
+            <Link to="/">
+              <img src={logoImage} alt="로고이미지" />
+            </Link>
+          </h1>
+        </div>
         <div className={styles.mainInputContainer}>
           <form className={styles.mainInputForm} onSubmit={handleSubmit}>
             <span className={styles.personIcon}></span>

@@ -123,10 +123,20 @@ function AnswerPage() {
     }
   };
 
+  const fetchAllFeedCard = async (subjectId) => {
+    const response = await getQuestionsBySubject(subjectId, {
+      offset: 0,
+      limit: 100,
+    });
+    
+    return response.results.map((q) => q.id);
+  };
+
   const handleDeleteAll = async () => {
   try {
+      const questionIds = await fetchAllFeedCard(subjectId);
       await Promise.all(
-        questions.map((q) => deleteFeedCard(q.id))
+        questionIds.map((id) => deleteFeedCard(id))
       );
       setQuestions([]);
       setCount(0);

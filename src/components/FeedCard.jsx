@@ -8,7 +8,7 @@ import { useState } from 'react';
 function FeedCard({ subject, count, questions, onReact, onSubmitAnswer, onDeleteFeedCard , onDeleteAll }) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const openDeleteModal = () => {
+  const handleOpenDeleteModal = () => {
     setIsDeleteModalOpen(true);
   };
 
@@ -20,7 +20,7 @@ function FeedCard({ subject, count, questions, onReact, onSubmitAnswer, onDelete
   return (
     <div className={styles.FeedCardContainer}>
       {questions?.length > 0 && (
-        <div className={styles.deleteButton} onClick={openDeleteModal}>
+        <div className={styles.deleteButton} onClick={handleOpenDeleteModal}>
           <FloatingButton theme="dark" size="small">
             삭제하기
           </FloatingButton>

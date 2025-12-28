@@ -2,29 +2,35 @@ import { useState } from 'react';
 import { formatRelativeDate } from '../utils/formatRelativeDate';
 import styles from './FeedCardList.module.css';
 import More from '../assets/icons/more.svg?react';
-import ThumbsUp from '../assets/icons/thumbs-up.svg?react';
-import ThumbsDown from '../assets/icons/thumbs-down.svg?react';
 import AnswerDropdown from './AnswerDropdown';
 import FeedCardEdit from './FeedCardEdit';
 import Badge from '../../src/components/common/Badge/Badge';
 import storage from '../utils/storage';
 import QuestionModal from './common/modal/ConfirmModal';
+import Reaction from './common/Reaction/Reaction';
 
-function FeedCardList({ subject, question, onReact, onSubmitAnswer, onDeleteFeedCard  }) {
-  const { id, content, createdAt, like, dislike, answer } = question;
+function FeedCardList({ subject, question, onReact, onSubmitAnswer, onDeleteFeedCard }) {
+  const { id, content, createdAt, answer } = question;
   const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
   const [ isEditing, setIsEditing ] = useState(false);
   const [ isEditDone, setIsEditDone ] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState(null);
+  const [selectedQuestionId, setSelectedQuestionId] = useState(null);
+  const isRejected = !!answer && answer.isRejected === true;
+  const shouldShowBadgeStatus = !!answer || answer?.content || isEditDone;
+
   const subjectId = storage.get('subjectId');
   const storageKey = `reactions-${subjectId}`;
   const reactions = storage.get(storageKey) || '{}';
   const myReaction = reactions[id];
-  const shouldShowBadgeStatus = !!answer || answer?.content || isEditDone;
-  const isRejected = !!answer && answer.isRejected === true;
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalType, setModalType] = useState(null);
-  const [selectedQuestionId, setSelectedQuestionId] = useState(null);
+  
+  const handleReactionClick = (type) => {
+    if (myReaction) return;
+    onReact(id, type);
+    reactions[id] = type;
+    storage.set(storageKey, reactions);
+  };
 
   const openDeleteModal = (id) => {
     setSelectedQuestionId(id);
@@ -50,13 +56,6 @@ function FeedCardList({ subject, question, onReact, onSubmitAnswer, onDeleteFeed
       );
     }
     setIsModalOpen(false);
-  };
-
-  const handleReactionClick = (type) => {
-    if (myReaction) return;
-    onReact(id, type);
-    reactions[id] = type;
-    localStorage.setItem(storageKey, JSON.stringify(reactions));
   };
 
   const handleMoreClick = () => {
@@ -105,22 +104,12 @@ function FeedCardList({ subject, question, onReact, onSubmitAnswer, onDeleteFeed
       />
       <div className={styles.reactions}>
         <div className={styles.reactionGroup}>
-          <button
-            className={`${styles.reactionButton} ${myReaction === 'like' ? styles.active : ''}`}
-            type="button"
-            onClick={() => handleReactionClick('like')}
-          >
-            <ThumbsUp className={styles.reactionIcon}/>
-            <span>좋아요 {like}</span>
-          </button>
-          <button
-            className={`${styles.reactionButton} ${myReaction === 'dislike' ? styles.active : ''}`}
-            type="button"
-            onClick={() => handleReactionClick('dislike')}
-          >
-            <ThumbsDown className={styles.reactionIcon} />
-            <span>싫어요 {dislike}</span>
-          </button>
+          <Reaction
+            question={question}
+            isReactionDisabled={!!myReaction}
+            activeMyReactionType={myReaction}
+            onReact={handleReactionClick}
+          />
         </div>
       </div>
       <QuestionModal

@@ -4,7 +4,7 @@ import MainPageHeader from '../components/MainPageHeader';
 function MainPage() {
   return (
     <>
-      <MainPageHeader />
+      {/* <MainPageHeader /> */}
       <MainPageContent />
     </>
   );

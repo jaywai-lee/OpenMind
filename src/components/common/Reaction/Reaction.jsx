@@ -8,7 +8,7 @@ import { useState } from 'react';
  *  <Reaction
  *   question={question}
  *   isReactionDisabled={isReactionDisabled}
- *   activeMyReactionType={isReactionDisabled}
+ *   activeMyReactionType={myReaction}
  *   onReact={handleReactionClick}
  *  ></Reaction>
  *

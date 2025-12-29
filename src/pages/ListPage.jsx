@@ -4,7 +4,7 @@ import ListTitleDropDown from '../components/ListTitleDropDown';
 import UserCardGrid from '../components/UserCardGrid';
 import UserCard from '../components/common/User/UserCard';
 import { getSubjectList } from '../api/subjects';
-import Pagination from '../components/Pagination';
+import Pagination from '../components/common/Page/Pagenation';
 
 function ListPage() {
   const [items, setItems] = useState([]);
@@ -16,8 +16,6 @@ function ListPage() {
   const [count, setCount] = useState(0);
 
   const offset = (currentPage - 1) * pageSize;
-  const totalPages = Math.ceil(count / pageSize);
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   useEffect(() => {
     async function loadData() {
@@ -70,8 +68,9 @@ function ListPage() {
 
       <Pagination
         currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
+        totalListCount={count}
+        pageLimit={pageSize}
+        onChangepage={setCurrentPage}
       />
     </>
   );

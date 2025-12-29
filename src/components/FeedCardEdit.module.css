@@ -57,17 +57,33 @@
   margin-top: 8px;
 }
 
-@media (max-width: 769px) {
+@media (max-width: 768px) {
+  .answerForm {
+    width: 100%;
+    max-width: 608px;
+    margin: 0 auto;
+  }
+  .answerFormBody {
+    width: 100%;
+    max-width: 548px;
+  }
   .answerInput {
-    width: 548px;
+    width: 100%;
   }
 }
 
-@media (max-width: 376px) {
-  .answerInput {
-    width: 203px;
+@media (max-width: 375px) {
+  .answerForm {
+    width: 100%;
+    max-width: 247px;
   }
-
+  .answerFormBody {
+    width: 100%;
+    max-width: 203px;
+  }
+  .answerInput {
+    width: 100%;
+  }
   .profileImage {
     width: 32px;
     height: 32px;

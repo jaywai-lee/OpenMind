@@ -31,18 +31,24 @@
   font-size: 20px;
 }
 
-@media (max-width: 769px) {
+@media (max-width: 768px) {
   .FeedCardContainer {
-    width: 704px;
+    width: 100%;
+    max-width: 704px;
+    margin: 0 auto;
+    padding: 0 16px;
+    
+  }
+  .messageSection {
+    padding: 0 16px;
   }
 }
 
-@media (max-width: 376px) {
+@media (max-width: 375px) {
   .FeedCardContainer {
-    width: 327px;
-    margin: 23px auto 168px;
+    width: 100%;
+    max-width: 327px;
   }
-
   .messageText {
     font-size: 18px;
   }

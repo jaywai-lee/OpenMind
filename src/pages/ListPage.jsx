@@ -10,8 +10,9 @@ function ListPage() {
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState('createdAt');
   const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(window.innerWidth < 824 ? 6 : 8);
 
-  const pageSize = 8;
+  // const pageSize = 8;
   const [count, setCount] = useState(0);
 
   const offset = (currentPage - 1) * pageSize;
@@ -35,7 +36,19 @@ function ListPage() {
     }
 
     loadData();
-  }, [offset]);
+  }, [offset, pageSize]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 823px)');
+
+    const handleChange = (e) => {
+      setPageSize(e.matches ? 6 : 8);
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   const sortedItems = [...items].sort((a, b) => {
     if (order === 'name') {

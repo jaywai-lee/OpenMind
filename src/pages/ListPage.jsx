@@ -8,9 +8,9 @@ import Pagination from '../components/common/Page/Pagenation';
 
 function ListPage() {
   const [items, setItems] = useState([]);
-  const [order, setOrder] = useState('createdAt');
+  const [order, setOrder] = useState('latest');
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(window.innerWidth < 824 ? 6 : 8);
+  const [pageSize, setPageSize] = useState(window.innerWidth < 843 ? 6 : 8);
 
   // const pageSize = 8;
   const [count, setCount] = useState(0);
@@ -37,7 +37,7 @@ function ListPage() {
   }, [offset, pageSize]);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 823px)');
+    const mediaQuery = window.matchMedia('(max-width: 843px)');
 
     const handleChange = (e) => {
       setPageSize(e.matches ? 6 : 8);
@@ -52,7 +52,7 @@ function ListPage() {
     if (order === 'name') {
       return a.name.localeCompare(b.name);
     }
-    return new Date(b.createdAt) - new Date(a.createdAt);
+    return new Date(b.latest) - new Date(a.latest);
   });
 
   return (

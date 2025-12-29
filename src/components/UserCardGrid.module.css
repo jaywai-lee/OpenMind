@@ -8,16 +8,17 @@
 }
 
 /* Tablet */
-@media (max-width: 1199px) {
-  .CardGrid {
+@media (max-width: 843px) {
+  .cardGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    max-width: 186px;
+    gap: 20px;
   }
 }
 
 /* Mobile */
-@media (max-width: 767px) {
-  .CardGrid {
+@media (max-width: 375px) {
+  .cardGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
   }
 }

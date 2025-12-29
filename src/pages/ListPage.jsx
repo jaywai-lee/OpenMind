@@ -12,7 +12,6 @@ function ListPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(window.innerWidth < 843 ? 6 : 8);
 
-  // const pageSize = 8;
   const [count, setCount] = useState(0);
 
   const offset = (currentPage - 1) * pageSize;
@@ -20,7 +19,6 @@ function ListPage() {
   useEffect(() => {
     async function loadData() {
       try {
-        // ⭐ offset / limit 적용
         const response = await getSubjectList({
           offset,
           limit: pageSize,
@@ -28,9 +26,7 @@ function ListPage() {
 
         setItems(response.results);
         setCount(response.count);
-      } catch (error) {
-        console.error(error);
-      }
+      } catch (error) {}
     }
 
     loadData();

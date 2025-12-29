@@ -17,6 +17,15 @@ function ListPage() {
   const offset = (currentPage - 1) * pageSize;
 
   useEffect(() => {
+    if (count > 0) {
+      const totalPages = Math.ceil(count / pageSize);
+      if (currentPage > totalPages) {
+        setCurrentPage(totalPages);
+      }
+    }
+  }, [pageSize, count, currentPage]);
+
+  useEffect(() => {
     async function loadData() {
       try {
         const response = await getSubjectList({
@@ -30,7 +39,7 @@ function ListPage() {
     }
 
     loadData();
-  }, [offset, pageSize]);
+  }, [currentPage, pageSize]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 843px)');

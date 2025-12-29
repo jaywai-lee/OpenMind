@@ -64,8 +64,12 @@
   align-items: center;
 }
 
-/* tablet 일 (기준: 768px 이하) */
-@media (max-width: 768px) {
+/* tablet 일 (기준: 843px 이하) */
+@media (max-width: 843px) {
+  .card {
+    width: 100%;
+    max-width: 250px;
+  }
 }
 
 /* mobile (기준: 375px 이하) */

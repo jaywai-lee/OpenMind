@@ -4,7 +4,7 @@ import { useToast } from '../context/ToastContext';
 
 function SubjectsFeedFooter({ isMyFeed, onOpenModal }) {
   const { toast } = useToast();
-  const handleClick = () => {
+  const handleCreateQuestionClick = () => {
     if (isMyFeed) {
       toast('내 피드에는 질문을 작성할 수 없습니다');
       return;
@@ -13,7 +13,7 @@ function SubjectsFeedFooter({ isMyFeed, onOpenModal }) {
   };
   return (
     <div className={styles.floatingGroup}>
-      <FloatingButton onClick={handleClick}>
+      <FloatingButton onClick={handleCreateQuestionClick}>
         <span>질문 작성</span>
         <span className={styles.hideOnMobile}>하기</span>
       </FloatingButton>

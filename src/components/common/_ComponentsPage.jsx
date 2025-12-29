@@ -45,8 +45,6 @@ function _ComponentPage() {
   const isReactionDisabled = !enabled || Boolean(myReaction);
 
   const handleOnReact = (type) => {
-    // onReact(id, type);
-    // setReaction(id, type);
     console.log('handleReact:::::', type);
   };
 

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import styles from './Pagenation.module.css';
 /**
  * pagenation 컴포넌트
@@ -26,6 +27,12 @@ function Pagenation({ currentPage, totalListCount, pageLimit, onChangepage }) {
   );
 
   if (visiblePageNumbers.length === 0) return null;
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      currentPage = totalPages;
+    }
+  }, []);
 
   const handlePageChange = (e, pageNumber) => {
     e.preventDefault();

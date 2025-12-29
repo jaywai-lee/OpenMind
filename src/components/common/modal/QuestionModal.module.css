@@ -13,7 +13,6 @@
 .modalContainer {
   width: 90vw;
   max-width: 612px;
-  /* height: 454px; */
   background: var(--Grayscale-10);
   box-shadow: var(--box-shadow-2pt);
   border-radius: 24px;
@@ -94,7 +93,6 @@ textarea {
 @media (max-width: 768px) {
   .modalContainer {
     width: calc(100% - 156px);
-    /* max-width: 612px; */
   }
 }
 
@@ -102,7 +100,6 @@ textarea {
 @media (max-width: 375px) {
   .modalContainer {
     width: calc(100% - 50px);
-    /* max-width: 327px; */
   }
   h3 {
     font-size: 20px;

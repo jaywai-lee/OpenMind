@@ -39,7 +39,6 @@ function QuestionModal({ isOpen, subject, onClose, onRefresh }) {
   }, []);
 
   const { id, name, imageSource } = subject || {};
-  // console.log('modal subject::::', id, name, imageSource);
 
   const handleChange = (e) => setInputValue(e.target.value);
   const isDisabled = inputValue.length === 0;

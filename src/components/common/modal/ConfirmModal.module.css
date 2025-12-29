@@ -13,7 +13,6 @@
 .confirmModalContainer {
   width: 90vw;
   max-width: 612px;
-  /* height: 200px; */
   background: var(--Grayscale-10);
   box-shadow: var(--box-shadow-2pt);
   border-radius: 24px;
@@ -51,7 +50,6 @@ h4 {
 .confirmClose {
   display: inline-block;
   vertical-align: sub;
-  /* cursor: pointer; */
 }
 .confirmButtonGroup {
   display: flex;
@@ -63,7 +61,6 @@ h4 {
 @media (max-width: 768px) {
   .confirmModalContainer {
     width: calc(100% - 156px);
-    /* max-width: 612px; */
   }
 }
 
@@ -71,16 +68,13 @@ h4 {
 @media (max-width: 375px) {
   .confirmModalContainer {
     width: calc(100% - 50px);
-    /* max-width: 327px; */
   }
   h3 {
-    /* text-align: center; */
     font-size: 20px;
   }
   h4 {
     max-width: 16ch;
     margin: 20px auto;
-    /* text-align: center; */
   }
   .confirmModalContainer {
     padding: 24px;

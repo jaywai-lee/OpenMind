@@ -25,7 +25,6 @@ function UserCard({ user = {} }) {
 
         <div className={styles.cardFooter}>
           <div className={styles.cardLeft}>
-            {/* <img src={messageImg} alt="대화 아이콘" /> */}
             <Messages className={styles.messageIcon} />
             <span className={styles.qna}>받은 질문</span>
           </div>

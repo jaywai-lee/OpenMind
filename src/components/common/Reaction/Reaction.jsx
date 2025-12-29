@@ -28,12 +28,6 @@ function Reaction({
   const { like, dislike } = question;
   const [voted, setVoted] = useState(false);
 
-  // console.log(
-  //   'activeMyReactionType::',
-  //   activeMyReactionType,
-  //   typeof activeMyReactionType,
-  // );
-
   const handleReactionClick = (type) => {
     if (isReactionDisabled || voted) return;
     setVoted(true);

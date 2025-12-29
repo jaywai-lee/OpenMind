@@ -1,9 +1,9 @@
+import { useState } from 'react';
 import styles from './FeedCard.module.css';
 import FeedCardList from './FeedCardList';
 import Messages from '../assets/icons/messages.svg?react';
 import FloatingButton from './common/Button/FloatingButton';
 import QuestionModal from './common/modal/ConfirmModal';
-import { useState } from 'react';
 
 function FeedCard({ subject, count, questions, onReact, onSubmitAnswer, onDeleteFeedCard , onDeleteAll }) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);

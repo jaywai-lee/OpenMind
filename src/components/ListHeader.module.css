@@ -36,13 +36,6 @@
   }
 }
 
-/* 모바일 - 약간 화면 줄일때 너무 줄여서 서로 붙어서 로고가 작아지면서 그러는게 보기그래서 넣어본 코드!*/
-/* @media (max-width: 420px) {
-  .group {
-    flex-direction: column;
-  }
-} */
-
 @media (max-width: 375px) {
   .group {
     flex-direction: column;

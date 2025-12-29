@@ -1,6 +1,6 @@
 import styles from './ListHeader.module.css';
 import logo from '../assets/icons/logo.svg';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from './common/Button/Button';
 import storage from '../utils/storage';
 

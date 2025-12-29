@@ -1,10 +1,11 @@
 .group {
-  width: 100%;
-  height: 57px;
+  max-width: 1200px;
+  height: auto;
   display: flex;
   justify-content: space-between;
   margin-top: 40px;
   align-items: center;
+  padding: 0 50px;
 }
 
 .group a {
@@ -18,14 +19,39 @@
 }
 
 .linkButton {
-  width: 161px;
+  min-width: 161px;
   height: 46px;
   display: flex;
   align-items: center;
 }
 
-/* .button {
-  background: var(--Brown-10);
-  border-radius: 8px;
-  border: 1px solid var(--Brown-40);
+/* 테블릿 */
+@media (max-width: 768px) {
+  .group {
+    padding: 0 45px 0 50px;
+  }
+  .linkButton {
+    min-width: 166px;
+    height: 46px;
+  }
+}
+
+/* 모바일 - 약간 화면 줄일때 너무 줄여서 서로 붙어서 로고가 작아지면서 그러는게 보기그래서 넣어본 코드!*/
+/* @media (max-width: 420px) {
+  .group {
+    flex-direction: column;
+  }
 } */
+
+@media (max-width: 375px) {
+  .group {
+    flex-direction: column;
+  }
+  .group a {
+    margin-bottom: 20px;
+  }
+  .linkButton {
+    min-width: 127px;
+    height: 34px;
+  }
+}

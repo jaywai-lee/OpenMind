@@ -39,7 +39,6 @@ function ListPage() {
     }
 
     loadData();
-    // }, [offset, pageSize]);
   }, [currentPage, pageSize]);
 
   useEffect(() => {

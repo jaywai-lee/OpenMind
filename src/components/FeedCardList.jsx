@@ -6,7 +6,7 @@ import AnswerDropdown from './AnswerDropdown';
 import FeedCardEdit from './FeedCardEdit';
 import Badge from '../../src/components/common/Badge/Badge';
 import storage from '../utils/storage';
-import QuestionModal from './common/modal/ConfirmModal';
+import ConfirmModal from './common/modal/ConfirmModal';
 import Reaction from './common/Reaction/Reaction';
 
 function FeedCardList({ subject, question, onReact, onSubmitAnswer, onDeleteFeedCard }) {
@@ -115,7 +115,7 @@ function FeedCardList({ subject, question, onReact, onSubmitAnswer, onDeleteFeed
           />
         </div>
       </div>
-      <QuestionModal
+      <ConfirmModal
         isOpen={isModalOpen}
         message={
           modalType === 'delete'

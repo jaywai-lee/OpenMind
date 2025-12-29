@@ -48,6 +48,7 @@
   .FeedCardContainer {
     width: 100%;
     max-width: 327px;
+    margin-top: 23px;
   }
   .messageText {
     font-size: 18px;

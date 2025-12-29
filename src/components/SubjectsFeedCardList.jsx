@@ -6,7 +6,7 @@ import useReactionStorage from '../hooks/useReactionStorage';
 import Reaction from '../components/common/Reaction/Reaction';
 
 function SubjectsFeedCardList({ subject, question, onReact }) {
-  const { id, content, createdAt, like, dislike, answer } = question;
+  const { id, content, createdAt, answer } = question;
   const userId = storage.get('userId', null);
   const subjectId = subject?.id;
   const { enabled, getMyReaction, setReaction } = useReactionStorage(

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './UserCard.module.css';
-import messageImg from '../../../assets/icons/messages.svg';
+import Messages from '../../../assets/icons/messages.svg?react';
 
 /**
  * 질문리스트 공통컴포넌트
@@ -25,7 +25,8 @@ function UserCard({ user = {} }) {
 
         <div className={styles.cardFooter}>
           <div className={styles.cardLeft}>
-            <img src={messageImg} alt="대화 아이콘" />
+            {/* <img src={messageImg} alt="대화 아이콘" /> */}
+            <Messages className={styles.messageIcon} />
             <span className={styles.qna}>받은 질문</span>
           </div>
           <span className={styles.count}>{questionCount}개</span>

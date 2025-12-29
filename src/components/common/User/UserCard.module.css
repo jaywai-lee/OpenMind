@@ -5,7 +5,7 @@
 
 .card {
   width: 100%;
-  min-width: 155px;
+  max-width: 220px;
   height: 187px;
   border-radius: 16px;
   border: 1px solid var(--Grayscale-40);
@@ -15,7 +15,10 @@
   flex-direction: column;
   justify-content: space-between;
 }
-
+.messageIcon {
+  width: 18px;
+  height: 18px;
+}
 .cardProfile {
   display: flex;
   flex-direction: column;
@@ -59,4 +62,30 @@
   color: var(--Grayscale-40);
   display: flex;
   align-items: center;
+}
+
+/* tablet 일 (기준: 768px 이하) */
+@media (max-width: 768px) {
+}
+
+/* mobile (기준: 375px 이하) */
+@media (max-width: 375px) {
+  .card {
+    min-width: 155.5px;
+  }
+  .userImage {
+    width: 48px;
+    height: 48px;
+  }
+  .name {
+    font-size: 18px;
+  }
+  .qna,
+  .count {
+    font-size: 14px;
+  }
+  .messageIcon {
+    width: 16px;
+    height: 16px;
+  }
 }

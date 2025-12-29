@@ -104,4 +104,14 @@ textarea {
     width: calc(100% - 50px);
     /* max-width: 327px; */
   }
+  h3 {
+    font-size: 20px;
+  }
+  .modalContainer {
+    padding: 24px;
+  }
+  .close {
+    width: 22px;
+    height: 22px;
+  }
 }

@@ -80,7 +80,12 @@ function QuestionModal({ isOpen, message, subMessage, onConfirm, onClose }) {
             >
               취소
             </Button>
-            <Button type="button" theme="dark" onClick={handleConfirm}>
+            <Button
+              type="button"
+              theme="dark"
+              isConfirm="true"
+              onClick={handleConfirm}
+            >
               확인
             </Button>
           </div>

@@ -14,6 +14,9 @@
 .reactionButton.active {
   color: var(--Blue-50);
 }
+.reactIcon {
+  fill: var(--Grayscale-40);
+}
 .active .reactIcon {
   fill: var(--Blue-50);
 }

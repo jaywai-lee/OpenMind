@@ -18,12 +18,13 @@ function Button({
   onClick,
   isDisabled,
   hasArrow = true,
+  isConfirm = false,
   ...props
 }) {
   const showArrow = theme === 'white';
   return (
     <button
-      className={`${styles.Button} ${styles[theme]} ${!hasArrow ? styles.noArrow : ''}`}
+      className={`${styles.Button} ${styles[theme]} ${!hasArrow ? styles.noArrow : ''} ${isConfirm ? styles.isConfirm : ''}`}
       onClick={onClick}
       disabled={isDisabled}
       {...props}

@@ -109,4 +109,9 @@
   .Button.white:active {
     padding: 8px 12px;
   }
+  .isConfirm {
+    height: 34px;
+    padding: 0 12px;
+    font-size: 14px;
+  }
 }

@@ -12,7 +12,7 @@ export const ToastProvider = ({ children }) => {
 
     setTimeout(() => {
       setToasts((prev) => prev.filter((toast) => toast.id !== id));
-    }, 3000);
+    }, 5000);
   }, []);
 
   return (

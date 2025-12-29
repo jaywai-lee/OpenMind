@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { formatRelativeDate } from '../utils/formatRelativeDate';
+import { useToast } from '../context/ToastContext';
 import styles from './FeedCardEdit.module.css';
 import Button from './common/Button/Button';
-import { useToast } from '../context/ToastContext';
 
-function FeedCardEdit({ id: questionId, subject, answer, onEditing, setOnEditing, setOnEditDone, onSubmitAnswer}) {
+function FeedCardEdit({ id: questionId, subject, answer, onEditing, setOnEditing, setOnEditDone, onSubmitAnswer }) {
   const { toast } = useToast();
   const [ text, setText ] = useState(answer?.content || '');
   const isNoAnswer = !answer || !answer?.content;

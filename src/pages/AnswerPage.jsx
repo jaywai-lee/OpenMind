@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getSubject } from '../api/subjects';
 import { getQuestionsBySubject, postQuestionReaction } from '../api/questions';
+import { createAnswer, deleteFeedCard, updateAnswer } from '../api/answers';
 import FeedCard from '../components/FeedCard';
 import FeedHeader from '../components/FeedHeader';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
-import { createAnswer, deleteFeedCard, updateAnswer } from '../api/answers';
 
 function AnswerPage() {
   const { id: subjectId } = useParams();

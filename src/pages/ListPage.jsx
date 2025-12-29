@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import ListHeader from '../components/ListHeader';
-import ListTitle from '../components/ListTitle';
-import DropDown from '../components/DropDown';
+import ListTitleDropDown from '../components/ListTitleDropDown';
 import UserCardGrid from '../components/UserCardGrid';
 import UserCard from '../components/common/User/UserCard';
 import { getSubjectList } from '../api/subjects';
@@ -48,8 +47,7 @@ function ListPage() {
   return (
     <>
       <ListHeader />
-      <ListTitle />
-      <DropDown onSelect={setOrder} />
+      <ListTitleDropDown onSelect={setOrder} />
 
       <UserCardGrid>
         {sortedItems.map((user) => (

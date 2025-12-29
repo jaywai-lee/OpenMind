@@ -66,10 +66,10 @@
 
 /* tablet 일 (기준: 843px 이하) */
 @media (max-width: 843px) {
-  .card {
+  /* .card {
     width: 100%;
     max-width: 250px;
-  }
+  } */
 }
 
 /* mobile (기준: 375px 이하) */

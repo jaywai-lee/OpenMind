@@ -3,16 +3,16 @@
   height: 54px;
   position: fixed;
   bottom: 24px;
-  right: 374px;
+  right: 24px;
 }
 
-@media (max-width: 769px) {
+@media (max-width: 768px) {
   .floatingGroup {
     right: 24px;
   }
 }
 
-@media (max-width: 376px) {
+@media (max-width: 375px) {
   .floatingGroup {
     width: 123px;
   }

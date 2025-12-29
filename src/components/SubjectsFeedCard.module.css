@@ -1,5 +1,6 @@
 .emptySection {
-  width: 716px;
+  width: 100%;
+  max-width: 716px;
   height: 330px;
   margin: 54px auto 136px;
   border-radius: 16px;
@@ -33,8 +34,10 @@
 }
 
 .messageSection {
-  width: 716px;
+  width: 100%;
+  max-width: 716px;
   margin: 54px auto 136px;
+  padding: 0 16px;
   border-radius: 16px;
   border: 1px solid var(--Brown-30);
   background: var(--Brown-10);
@@ -55,23 +58,17 @@
   font-size: 20px;
 }
 
-@media (max-width: 769px) {
-  .emptySection {
-    width: 704px;
-  }
-
+@media (max-width: 768px) {
+  .emptySection,
   .messageSection {
-    width: 704px;
+    max-width: calc(100% - 64px);
   }
 }
 
-@media (max-width: 376px) {
-  .emptySection {
-    width: 327px;
-  }
-
+@media (max-width: 375px) {
+  .emptySection,
   .messageSection {
-    width: 327px;
+    max-width: calc(100% - 48px);
     margin-bottom: 126px;
   }
 

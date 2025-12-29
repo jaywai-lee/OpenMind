@@ -1,9 +1,9 @@
 .feedCardListContainer {
-  width: 684px;
+  width: 100%;
   border-radius: 16px;
   box-shadow: var(--box-shadow-1pt);
   background: var(--Grayscale-10);
-  margin: 0 16px 20px;
+  margin-bottom: 20px;
   padding: 32px;
   display: flex;
   flex-direction: column;
@@ -151,17 +151,12 @@
   color: var(--Blue-50);
 }
 
-@media (max-width: 769px) {
+@media (max-width: 375px) {
   .feedCardListContainer {
-    width: 672px;
-  }
-}
-
-@media (max-width: 376px) {
-  .feedCardListContainer {
-    width: 295px;
+    max-width: 100%;
     padding: 24px;
     gap: 24px;
+    margin-bottom: 16px;
   }
 
   .questionText {

@@ -4,7 +4,6 @@ import styles from './ConfirmModal.module.css';
 import { useEffect, useState } from 'react';
 import Close from '../../../assets/icons/close.svg?react';
 import Bang from '../../../assets/icons/bang.svg?react';
-// import Bang from '../../../assets/icons/bang2.svg?react';
 
 /**
  * 질문하기 모달창

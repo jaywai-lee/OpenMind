@@ -19,7 +19,7 @@ import Bang from '../../../assets/icons/bang.svg?react';
  * @props { isOpen, subject, onClose, onRefresh }
  * @returns 확인/취소 모달 (jsx)
  */
-function QuestionModal({ isOpen, message, subMessage, onConfirm, onClose }) {
+function ConfirmModal({ isOpen, message, subMessage, onConfirm, onClose }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -96,4 +96,4 @@ function QuestionModal({ isOpen, message, subMessage, onConfirm, onClose }) {
   );
 }
 
-export default QuestionModal;
+export default ConfirmModal;

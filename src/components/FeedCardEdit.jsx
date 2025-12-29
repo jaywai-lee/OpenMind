@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { formatRelativeDate } from '../utils/formatRelativeDate';
 import styles from './FeedCardEdit.module.css';
 import Button from './common/Button/Button';
-import { Toast } from './common/Toast/Toast';
 import { useToast } from '../context/ToastContext';
 
 function FeedCardEdit({ id: questionId, subject, answer, onEditing, setOnEditing, setOnEditDone, onSubmitAnswer}) {
+  const { toast } = useToast();
   const [ text, setText ] = useState(answer?.content || '');
   const isNoAnswer = !answer || !answer?.content;
   const shouldShowInput = isNoAnswer || onEditing;
@@ -17,8 +17,6 @@ function FeedCardEdit({ id: questionId, subject, answer, onEditing, setOnEditing
   const handleTextChange = (e) => {
     setText(e.target.value);
   };
-
-  const { toast } = useToast();
 
   const handleSubmit = async () => {
     if (text.trim().length === 0) return;

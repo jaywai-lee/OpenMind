@@ -72,42 +72,24 @@
   gap: 32px;
   margin-top: 24px;
 }
-.reactionButton {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 7px;
-  color: var(--Grayscale-40);
-}
-.reactionButton:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-.reactionIcon {
-  width: 16px;
-  height: 16px;
-  fill: var(--Grayscale-40);
-}
-.active .reactionIcon {
-  fill: var(--Blue-50);
-}
-.active span {
-  color: var(--Blue-50);
-}
 
-@media (max-width: 769px) {
+@media (max-width: 768px) {
   .feedCardListContainer {
     width: 672px;
+    max-width: 100%;
+    margin: 0 auto 20px;
     padding: 24px;
     gap: 24px;
+    
   }
 }
 
-@media (max-width: 376px) {
+@media (max-width: 375px) {
   .feedCardListContainer {
-    width: 295px;
+    width: 100%;
+    max-width: 295px;
+    margin-bottom: 16px;
   }
-
   .questionText {
     font-size: 16px;
   }

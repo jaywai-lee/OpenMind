@@ -22,14 +22,17 @@ function FeedCardList({ subject, question, onReact, onSubmitAnswer, onDeleteFeed
 
   const subjectId = storage.get('subjectId');
   const storageKey = `reactions-${subjectId}`;
-  const reactions = storage.get(storageKey) || '{}';
+  const reactions = storage.get(storageKey) || {};
   const myReaction = reactions[id];
   
   const handleReactionClick = (type) => {
     if (myReaction) return;
     onReact(id, type);
-    reactions[id] = type;
-    storage.set(storageKey, reactions);
+    const updatedReactions = {
+      ...reactions,
+      [id]: type,
+    };
+    storage.set(storageKey, updatedReactions);
   };
 
   const openDeleteModal = (id) => {

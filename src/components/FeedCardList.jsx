@@ -79,11 +79,9 @@ function FeedCardList({ subject, question, onReact, onSubmitAnswer, onDeleteFeed
             <More className={styles.moreImage} onClick={handleMoreClick}/>
             { isDropdownOpen && 
             <AnswerDropdown 
-              onClick={handleEditClick} 
               id={id} 
-              onSubmitAnswer={onSubmitAnswer} 
+              onClick={handleEditClick} 
               answer={answer} 
-              onDeleteFeedCard ={onDeleteFeedCard}
               onOpenDeleteModal={openDeleteModal}
               onOpenRejectModal={openRejectModal}
             /> 
@@ -97,9 +95,8 @@ function FeedCardList({ subject, question, onReact, onSubmitAnswer, onDeleteFeed
       </div>
       <FeedCardEdit
         id={id}
-        answer={answer}
-        createdAt={createdAt}
         subject={subject}
+        answer={answer}
         onEditing={isEditing} 
         setOnEditing={setIsEditing} 
         setOnEditDone={setIsEditDone}

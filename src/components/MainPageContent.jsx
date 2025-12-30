@@ -33,13 +33,6 @@ function MainPageContent() {
     <section className={styles.mainSection}>
       <div className={styles.mainContainer}>
         <div className={styles.mainHeaderGroup}>
-          {/* <div className={styles.questionGoBtnContainer}>
-            <header className={`${styles.questionGoBtnGroup}`}>
-              <Link to="/list">
-                <Button theme="white">질문하러 가기</Button>
-              </Link>
-            </header>
-          </div> */}
           <MainPageHeader />
           <h1 className={styles.mainLogoGroup}>
             <Link to="/">

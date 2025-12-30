@@ -5,12 +5,10 @@
   display: flex;
   justify-content: right;
   background: var(--Grayscale-20);
-  /* margin: 0 20px; */
 }
 .questionGoBtnGroup {
   min-width: 161px; /* 버튼 속성 추가 */
   height: 46px;
-  /* margin: 45px 130px; */
   margin: 45px 0px;
 }
 

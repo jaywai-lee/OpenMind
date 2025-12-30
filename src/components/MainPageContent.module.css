@@ -1,6 +1,6 @@
 .mainContainer {
   width: 100%;
-  min-height: 672px;
+  min-height: 832px;
   text-align: center;
   background: var(--Grayscale-20);
   background-image: url('../assets/images/main-image.png');
@@ -93,7 +93,6 @@
 /* mobile (기준: 375px 이하) */
 @media (max-width: 375px) {
   .mainInputContainer {
-    /* max-width: 305px; */
     margin: 0px 35px;
   }
   .mainSection {
@@ -106,14 +105,6 @@
   }
   .mainHeaderGroup {
     flex-direction: column-reverse;
-    /* margin: 0 auto; */
     align-items: center;
   }
-
-  /*  */
-  /* .questionGoBtnGroup {
-    min-width: 123px;
-    height: 34px;
-    margin: 45px 130px;
-  } */
 }

@@ -88,10 +88,16 @@
 
 /* tablet 일 (기준: 768px 이하) */
 @media (max-width: 768px) {
+  .mainContainer {
+    min-height: 832px;
+  }
 }
 
 /* mobile (기준: 375px 이하) */
 @media (max-width: 375px) {
+  .mainContainer {
+    min-height: 100vh;
+  }
   .mainInputContainer {
     margin: 0px 35px;
   }
